@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/login_page.dart';
-import 'package:flutter_application_1/screens/signup_page.dart';
-import 'screens/login_page.dart'; // Giriş sayfası için gerekli
-import 'screens/signup_page.dart'; // Üye olma sayfası için gerekli
+import 'package:flutter_application_1/pages/login_register_page.dart';
+import 'login_page.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -12,7 +10,7 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          color: Colors.white, // Arka plan rengi (isteğe bağlı)
+          color: Colors.white,
         ),
         child: Center(
           child: Padding(
@@ -34,45 +32,36 @@ class WelcomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, color: Colors.redAccent),
                 ),
-                const SizedBox(height: 50), // Butonlar ve metin arasında boşluk
+                const SizedBox(height: 50),
                 Container(
-                  width: 400, // Resim genişliği
-                  height: 300, // Resim yüksekliği
+                  width: 400,
+                  height: 300,
                   decoration: BoxDecoration(
                     image: const DecorationImage(
-                      image: AssetImage(
-                          'lib/assets/images/teamwork.jpeg'), // Arka plan resmi
-                      fit: BoxFit.cover, // Resmi tamamen kapsar
+                      image: AssetImage('lib/assets/images/teamwork.jpeg'),
+                      fit: BoxFit.cover,
                     ),
-                    borderRadius:
-                        BorderRadius.circular(20), // Köşeleri yuvarlatma
+                    borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2), // Gölge rengi
-                        spreadRadius: 5, // Gölge yayılma genişliği
-                        blurRadius: 7, // Gölge bulanıklık yarıçapı
-                        offset:
-                            Offset(0, 3), // Gölgenin x ve y ekseninde kayması
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 50), // Resim ve butonlar arasında boşluk
+                const SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
+                          builder: (context) => const LoginRegisterPage()),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                    foregroundColor: Colors.white, // Metin rengini beyaz yapar
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 18),
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
+                  style: buttonStyle,
                   child: const Text('Giriş Yap'),
                 ),
                 const SizedBox(height: 20),
@@ -81,16 +70,10 @@ class WelcomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SignupPage()),
+                          builder: (context) => const LoginRegisterPage()),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                    foregroundColor: Colors.white, // Metin rengini beyaz yapar
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 18),
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
+                  style: buttonStyle,
                   child: const Text('Üye Ol'),
                 ),
               ],
@@ -100,4 +83,11 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  static final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
+    backgroundColor: Colors.redAccent,
+    foregroundColor: Colors.white,
+    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
+    textStyle: const TextStyle(fontSize: 20),
+  );
 }
