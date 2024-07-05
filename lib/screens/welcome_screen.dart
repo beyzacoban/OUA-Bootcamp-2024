@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login_register_page.dart';
-import 'login_page.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -10,31 +9,54 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          color: Colors.white,
+          gradient: LinearGradient(
+            colors: [Colors.white, Colors.blueAccent],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const Text(
-                  'ProjMatch',
+                  'TeamHub',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.bold,
-                    color: Colors.redAccent,
+                    color: Colors.blueAccent,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10.0,
+                        color: Colors.black45,
+                        offset: Offset(3.0, 3.0),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Projelerinizi hayata geçirin, birlikte çalışmanın gücünü keşfedin!',
+                  'Bringing Ideas to Life, Together!',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18, color: Colors.redAccent),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 195, 7, 7),
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10.0,
+                        color: Colors.black45,
+                        offset: Offset(3.0, 3.0),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 50),
                 Container(
-                  width: 400,
+                  width: double.infinity,
                   height: 300,
                   decoration: BoxDecoration(
                     image: const DecorationImage(
@@ -44,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
                         offset: const Offset(0, 3),
@@ -62,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
                     );
                   },
                   style: buttonStyle,
-                  child: const Text('Giriş Yap'),
+                  child: const Text('Log In'),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
@@ -74,7 +96,7 @@ class WelcomeScreen extends StatelessWidget {
                     );
                   },
                   style: buttonStyle,
-                  child: const Text('Üye Ol'),
+                  child: const Text('Sign Up'),
                 ),
               ],
             ),
@@ -85,9 +107,14 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   static final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-    backgroundColor: Colors.redAccent,
-    foregroundColor: Colors.white,
+    backgroundColor: Colors.white,
+    foregroundColor: Colors.blueAccent,
     padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
     textStyle: const TextStyle(fontSize: 20),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+    shadowColor: Colors.black,
+    elevation: 10,
   );
 }

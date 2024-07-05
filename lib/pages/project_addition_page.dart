@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class ProjectAdditionPage extends StatelessWidget {
   final Function(String, String) addProject;
 
-  const ProjectAdditionPage({super.key, required this.addProject});
+  const ProjectAdditionPage({Key? key, required this.addProject})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,38 @@ class ProjectAdditionPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ProjectSelectionPage extends StatelessWidget {
+  final List<String> projects;
+  final Function(String) joinProject;
+
+  const ProjectSelectionPage(
+      {Key? key, required this.projects, required this.joinProject})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Select a Project"),
+      ),
+      body: ListView.builder(
+        itemCount: projects.length,
+        itemBuilder: (context, index) {
+          final project = projects[index];
+          return ListTile(
+            title: Text(project),
+            onTap: () {
+              joinProject(project);
+              Navigator.pop(context);
+            },
+            trailing: const Icon(Icons.arrow_forward_ios),
+          );
+        },
       ),
     );
   }
