@@ -31,9 +31,9 @@ TeamHub, proje fikri olan ve projesine uygun birlikte çalışabileceği takım 
 
 <table>
   <tr>
-    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/5763a38a-8761-4f30-b686-59e15bad2eee" alt="1-3" width="250" height="150" /></td>
-    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/ceb54f3a-4633-4bbb-995e-1717e8d2c097" alt="2-3" width="250" height="150" /></td>
-    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/4570248c-5108-486b-b85b-dcbc494e0eb6" alt="3-3" width="250" height="150" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/5763a38a-8761-4f30-b686-59e15bad2eee" alt="1-3" width="950" height="550" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/ceb54f3a-4633-4bbb-995e-1717e8d2c097" alt="2-3" width="950" height="550" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/4570248c-5108-486b-b85b-dcbc494e0eb6" alt="3-3" width="950" height="550" /></td>
   </tr>
 </table>
 
