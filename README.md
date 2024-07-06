@@ -38,11 +38,17 @@ Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihti
 
 <table>
   <tr>
-    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/5763a38a-8761-4f30-b686-59e15bad2eee" alt="1-3" width="950" height="550" /></td>
-    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/ceb54f3a-4633-4bbb-995e-1717e8d2c097" alt="2-3" width="950" height="550" /></td>
-    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/4570248c-5108-486b-b85b-dcbc494e0eb6" alt="3-3" width="950" height="550" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/d9abb5ca-2a5f-43eb-84b2-5085eeb706cc" alt="WhatsApp Görsel 2024-07-06 saat 18 06 24_aa3f9f36" width="600" height="400" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/56734d52-a6ce-4d65-8f93-e91006cac75f" alt="WhatsApp Görsel 2024-07-06 saat 18 06 24_99c364dd" width="600" height="400" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/cdd67c17-8e19-4bb0-bf40-8de52747fc8c" alt="WhatsApp Görsel 2024-07-06 saat 18 06 25_d8411f0a" width="600" height="400" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/388a71df-6d57-4894-9dd7-87a7590e0c84" alt="WhatsApp Görsel 2024-07-06 saat 18 06 25_41b3a3ff" width="600" height="400" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/9a460767-fd74-4acd-afef-afcc75e17b06" alt="WhatsApp Görsel 2024-07-06 saat 18 06 25_749647e6" width="600" height="400" /></td>
+    <td><img src="https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/32241a49-98b4-4f3c-963d-8ed5101bc8c3" alt="WhatsApp Görsel 2024-07-06 saat 18 06 26_ba3d894c" width="600" height="400" /></td>
   </tr>
 </table>
+
 
 ## Sprint Review
 - Görev dağılımları yapılmış, product owner, scrum master ve developerlar belirlenmiştir.
