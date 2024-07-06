@@ -1,5 +1,4 @@
-# Takım İsmi 
-**Flutter Grup-39**
+# **Flutter Grup-39**
 
 ## Takım Üyeleri
 
