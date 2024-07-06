@@ -1,8 +1,9 @@
-# **Flutter Grup-39**
+# Takım İsmi 
+**Flutter Grup-39**
 
 ## Takım Üyeleri
 
-| Name           | Title                  |
+| İsim           | Görev                  |
 | -------------- | ---------------------- |
 | Ayşenur Eskin  | Scrum Master           |
 | Beyza Çoban    | Product Owner/Developer|
@@ -13,16 +14,23 @@
 **TeamHub**
 
 ## Uygulama Açıklaması
-TeamHub, proje fikri olan ve projesine uygun birlikte çalışabileceği takım arkadaşları arayan ürün sahipleri ile takım çalışmasında yer almak isteyen geliştiricileri bir araya getiren bir platformdur.
+TeamHub, proje fikri olan ve projesine uygun birlikte çalışabileceği takım arkadaşları arayan ürün sahipleri ile takım çalışmasında yer almak isteyen geliştiricileri bir araya getiren bir platformdur. 
+
+Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihtiyaç duydukları beceri ve yeteneklere sahip takım arkadaşlarını arayabilirler. Aynı zamanda, geliştiriciler de TeamHub'ı kullanarak ilgi alanlarına ve becerilerine uygun projelerde yer almak için başvuruda bulunabilirler.
+
+
+### Temel Özellikler
+1. Proje sahipleri projelerini detaylı bir şekilde tanıtabilir, gerekli yetenek ve becerilere göre takım üyeleri arayabilir.
+2. Geliştiriciler, ilgi alanlarına ve uzmanlıklarına göre projelere başvurabilir ve projelere dahil olabilirler.
+
 
 ## Hedef Kitle
-- Proje fikri olan ve projesine uygun birlikte çalışabileceği takım arkadaşları arayan ürün sahipleri
-- Takım çalışmasında yer almak isteyen geliştiriciler
+- **Proje Sahipleri:** Proje fikri olan ve projelerine uygun birlikte çalışabilecek takım arkadaşları arayan kişiler.
+- **Geliştiriciler:** Takım çalışmasında yer almak isteyen, farklı projelerde yer alarak deneyim kazanmak isteyen yazılım geliştiricileri.
 
-## SPRINT 1
-
-- Sprint 1 için puan puan değerlendirme tahmini 10 olarak belirlenmiştir.
-- Daily Scrum: Slack kanalı üzerinden sağlanmıştır.
+## Sprint 1
+- **Tamamlanması Tahmin Edilen Puan:** 10 Puan
+- **Daily Scrum:** Daily Scrum toplantıları Slack kanalı üzerinden yapılmıştır.
 
 ### Toplantı ve Slack Kanalı Ekran Görüntüleri
 [Slack Kanalı Ekran Görüntüleri](https://drive.google.com/drive/folders/1x0s_GVilwxavy_-ksozzCdsEhO9km6QN?usp=sharing)
@@ -43,4 +51,4 @@ TeamHub, proje fikri olan ve projesine uygun birlikte çalışabileceği takım 
 - Sprint review katılımcıları: Beyza Çoban, Rabia Günbaş, Ayşenur Eskin, Batuhan Turan
 
 ## Sprint Retrospective
-- Developer grubu projenin ilk görünümünü ortaya çıkarmıştır.
+- Developer grubu projenin ilk görünümünü ortaya çıkarmıştır
