@@ -28,9 +28,9 @@ TeamHub, proje fikri olan ve projesine uygun birlikte çalışabileceği takım 
 [Slack Kanalı Ekran Görüntüleri](https://drive.google.com/drive/folders/1x0s_GVilwxavy_-ksozzCdsEhO9km6QN?usp=sharing)
 
 ### Ürün Durumu: Ekran Görüntüleri
-![Ekran Görüntüsü 1](images/1-3.jpg)
-![Ekran Görüntüsü 2](images/2-3.jpg)
-![Ekran Görüntüsü 3](images/3-3.jpg)
+![1-3](https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/5763a38a-8761-4f30-b686-59e15bad2eee)
+![2-3](https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/ceb54f3a-4633-4bbb-995e-1717e8d2c097)
+![3-3](https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/4570248c-5108-486b-b85b-dcbc494e0eb6)
 
 ## Sprint Review
 - Görev dağılımları yapılmış, product owner, scrum master ve developerlar belirlenmiştir.
