@@ -12,6 +12,12 @@
 ## Uygulama İsmi
 **TeamHub**
 
+## Product Backlog URL
+Proje yönetim ve görev takibi için Trello kullanıyoruz. Detaylara aşağıdaki linkten ulaşabilirsiniz:
+
+[Trello Board](https://trello.com/b/fHno3FqK/ouabootcamp2024fluttergroup39)
+
+
 ## Uygulama Açıklaması
 TeamHub, proje fikri olan ve projesine uygun birlikte çalışabileceği takım arkadaşları arayan ürün sahipleri ile takım çalışmasında yer almak isteyen geliştiricileri bir araya getiren bir platformdur. 
 
@@ -30,6 +36,9 @@ Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihti
 ## Sprint 1
 - **Tamamlanması Tahmin Edilen Puan:** 10 Puan
 - **Daily Scrum:** Daily Scrum toplantıları Slack kanalı üzerinden yapılmıştır.
+
+![Ekran görüntüsü 2024-07-08 211338](https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/e2247199-24cc-48ef-926e-4fd6766e4cec)
+
 
 ### Toplantı ve Slack Kanalı Ekran Görüntüleri
 [Slack Kanalı Ekran Görüntüleri](https://drive.google.com/drive/folders/1x0s_GVilwxavy_-ksozzCdsEhO9km6QN?usp=sharing)
