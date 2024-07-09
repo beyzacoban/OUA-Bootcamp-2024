@@ -18,6 +18,8 @@ dependencies:
   http: ^1.2.0
   firebase_core: ^2.27.0
   firebase_auth: ^4.17.8
+  image_picker: ^1.0.8
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:

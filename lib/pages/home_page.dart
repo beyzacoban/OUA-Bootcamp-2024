@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile_page.dart';
 import 'project_addition_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,14 +12,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final List<Map<String, String>> _myProjects = [];
-  final List<Map<String, String>> _friendsProjects = [];
-  final List<Map<String, String>> _exploreProjects = [
+  final List<Map<String, dynamic>> _friendsProjects = [
     {
       'title': 'Fitness Tracker',
       'description': 'An app to track fitness activities and progress.',
       'language': 'Kotlin',
       'duration': '3 months',
-      'teamSize': '3'
+      'teamSize': '3',
+      'friendName': 'Alice',
+      'joined': false
     },
     {
       'title': 'Project Management App',
@@ -26,14 +28,36 @@ class _HomePageState extends State<HomePage>
           'A project management application to manage tasks and teams.',
       'language': 'Dart',
       'duration': '6 months',
-      'teamSize': '4'
+      'teamSize': '4',
+      'friendName': 'Bob',
+      'joined': false
+    },
+  ];
+  final List<Map<String, dynamic>> _exploreProjects = [
+    {
+      'title': 'Fitness Tracker',
+      'description': 'An app to track fitness activities and progress.',
+      'language': 'Kotlin',
+      'duration': '3 months',
+      'teamSize': '3',
+      'joined': false
+    },
+    {
+      'title': 'Project Management App',
+      'description':
+          'A project management application to manage tasks and teams.',
+      'language': 'Dart',
+      'duration': '6 months',
+      'teamSize': '4',
+      'joined': false
     },
     {
       'title': 'E-commerce Website',
       'description': 'An online platform to buy and sell products.',
       'language': 'JavaScript',
       'duration': '4 months',
-      'teamSize': '5'
+      'teamSize': '5',
+      'joined': false
     },
   ];
 
@@ -50,9 +74,6 @@ class _HomePageState extends State<HomePage>
       _myProjects.add({
         'title': title,
         'description': description,
-        'language': 'Unknown', // Default value
-        'duration': 'Unknown', // Default value
-        'teamSize': 'Unknown' // Default value
       });
     });
   }
@@ -63,6 +84,12 @@ class _HomePageState extends State<HomePage>
     });
   }
 
+  void _joinProject(int index, List<Map<String, dynamic>> projects) {
+    setState(() {
+      projects[index]['joined'] = !projects[index]['joined'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,9 +97,12 @@ class _HomePageState extends State<HomePage>
         title: const Text("Projects"),
         bottom: TabBar(
           controller: _tabController,
+          indicatorColor: Colors.white,
+          labelStyle:
+              const TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
           tabs: const [
             Tab(text: "My Projects"),
-            Tab(text: "Friends' Projects"),
+            Tab(text: "Friend's Projects"),
             Tab(text: "Explore"),
           ],
         ),
@@ -83,22 +113,24 @@ class _HomePageState extends State<HomePage>
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color.fromARGB(255, 33, 187, 243),
               ),
               child: Text(
                 'Menu',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text('Profile'),
               onTap: () {
-                // Profile sayfasına yönlendir
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
               },
             ),
             ListTile(
@@ -123,22 +155,30 @@ class _HomePageState extends State<HomePage>
       body: TabBarView(
         controller: _tabController,
         children: [
-          _buildMyProjectsTab(),
-          _buildProjectList(_friendsProjects),
-          _buildProjectList(_exploreProjects),
+          Stack(
+            children: [
+              _buildMyProjectsTab(),
+              Positioned(
+                bottom: 16,
+                right: 16,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProjectAdditionPage(addProject: _addProject),
+                      ),
+                    );
+                  },
+                  child: const Icon(Icons.add),
+                ),
+              ),
+            ],
+          ),
+          _buildProjectList(_friendsProjects, true),
+          _buildProjectList(_exploreProjects, false),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  ProjectAdditionPage(addProject: _addProject),
-            ),
-          );
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }
@@ -147,57 +187,95 @@ class _HomePageState extends State<HomePage>
     return _myProjects.isEmpty
         ? const Center(child: Text("No projects added yet."))
         : ListView.builder(
+            padding: const EdgeInsets.all(8.0),
             itemCount: _myProjects.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(_myProjects[index]['title']!),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Description: ${_myProjects[index]['description']!}'),
-                    Text('Language: ${_myProjects[index]['language']!}'),
-                    Text('Duration: ${_myProjects[index]['duration']!}'),
-                    Text('Team Size: ${_myProjects[index]['teamSize']!}'),
-                  ],
-                ),
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.red),
-                  onPressed: () {
-                    setState(() {
-                      _myProjects.removeAt(index);
-                    });
-                  },
+              return Card(
+                elevation: 5,
+                margin: const EdgeInsets.symmetric(vertical: 8.0),
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(16.0),
+                  title: Text(_myProjects[index]['title']!,
+                      style: const TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Text('Description: ${_myProjects[index]['description']!}',
+                          style: const TextStyle(fontSize: 16.0)),
+                      if (_myProjects[index].containsKey('language'))
+                        Text('Language: ${_myProjects[index]['language']!}',
+                            style: const TextStyle(fontSize: 16.0)),
+                      if (_myProjects[index].containsKey('duration'))
+                        Text('Duration: ${_myProjects[index]['duration']!}',
+                            style: const TextStyle(fontSize: 16.0)),
+                      if (_myProjects[index].containsKey('teamSize'))
+                        Text('Team Size: ${_myProjects[index]['teamSize']!}',
+                            style: const TextStyle(fontSize: 16.0)),
+                    ],
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {
+                      setState(() {
+                        _myProjects.removeAt(index);
+                      });
+                    },
+                  ),
                 ),
               );
             },
           );
   }
 
-  Widget _buildProjectList(List<Map<String, String>> projects) {
+  Widget _buildProjectList(
+      List<Map<String, dynamic>> projects, bool isFriendsProjects) {
     if (projects.isEmpty) {
       return const Center(child: Text("No projects added yet."));
     } else {
       return ListView.builder(
+        padding: const EdgeInsets.all(8.0),
         itemCount: projects.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(projects[index]['title']!),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Description: ${projects[index]['description']!}'),
-                Text('Language: ${projects[index]['language']!}'),
-                Text('Duration: ${projects[index]['duration']!}'),
-                Text('Team Size: ${projects[index]['teamSize']!}'),
-              ],
-            ),
-            trailing: IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: () {
-                setState(() {
-                  projects.removeAt(index);
-                });
-              },
+          return Card(
+            elevation: 5,
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(16.0),
+              title: Text(projects[index]['title']!,
+                  style: const TextStyle(
+                      fontSize: 20.0, fontWeight: FontWeight.bold)),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Text('Description: ${projects[index]['description']!}',
+                      style: const TextStyle(fontSize: 16.0)),
+                  if (projects[index].containsKey('language'))
+                    Text('Language: ${projects[index]['language']!}',
+                        style: const TextStyle(fontSize: 16.0)),
+                  if (projects[index].containsKey('duration'))
+                    Text('Duration: ${projects[index]['duration']!}',
+                        style: const TextStyle(fontSize: 16.0)),
+                  if (projects[index].containsKey('teamSize'))
+                    Text('Team Size: ${projects[index]['teamSize']!}',
+                        style: const TextStyle(fontSize: 16.0)),
+                  if (isFriendsProjects)
+                    Text('Friend: ${projects[index]['friendName']!}',
+                        style: const TextStyle(fontSize: 16.0)),
+                ],
+              ),
+              trailing: ElevatedButton(
+                onPressed: () {
+                  _joinProject(index, projects);
+                },
+                style: ElevatedButton.styleFrom(
+                  primary:
+                      projects[index]['joined'] ? Colors.green : Colors.blue,
+                ),
+                child: Text(projects[index]['joined'] ? 'Joined' : 'Join'),
+              ),
             ),
           );
         },

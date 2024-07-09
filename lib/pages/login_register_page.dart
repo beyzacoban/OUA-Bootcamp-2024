@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/service/auth.dart';
@@ -48,6 +46,54 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     }
   }
 
+  Widget buildWelcomeMessage() {
+    return const Column(
+      children: [
+        Text(
+          'Welcome!',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          'We are excited to have you join us.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.grey,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildLoginMessage() {
+    return Column(
+      children: [
+        const Text(
+          'Welcome Back!',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          'Let\'s get back to work.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.grey,
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,12 +104,15 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              isLogin ? buildLoginMessage() : buildWelcomeMessage(),
+              const SizedBox(height: 40),
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
                   hintText: "Email",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
+                    borderSide: const BorderSide(color: Colors.blue),
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
@@ -80,6 +129,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                   hintText: "Password",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
+                    borderSide: const BorderSide(color: Colors.blue),
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
@@ -105,14 +155,14 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
+                  primary: Colors.blue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
                 child: Text(
-                  isLogin ? "Login" : "Register",
+                  isLogin ? "Log in" : "Register",
                   style: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
@@ -129,9 +179,9 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                       : "Already have an account? Login",
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: Colors.blueAccent,
-                    decoration: TextDecoration.underline,
+                    color: Colors.blue,
                     fontSize: 16,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ),

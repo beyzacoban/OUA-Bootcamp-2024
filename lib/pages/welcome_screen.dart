@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login_register_page.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  const WelcomeScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
                   'TeamHub',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 48,
+                    fontSize: 72,
                     fontWeight: FontWeight.bold,
                     color: Colors.blueAccent,
                     shadows: [
@@ -43,8 +43,9 @@ class WelcomeScreen extends StatelessWidget {
                   'Bringing Ideas to Life, Together!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20,
-                    color: Color.fromARGB(255, 195, 7, 7),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 90, 21, 3),
                     shadows: [
                       Shadow(
                         blurRadius: 10.0,
@@ -83,8 +84,23 @@ class WelcomeScreen extends StatelessWidget {
                           builder: (context) => const LoginRegisterPage()),
                     );
                   },
-                  style: buttonStyle,
-                  child: const Text('Log In'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    onPrimary: Color.fromARGB(255, 90, 21, 3),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 18),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    elevation: 10,
+                  ),
+                  child: const Text(
+                    'Log In',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
@@ -95,8 +111,26 @@ class WelcomeScreen extends StatelessWidget {
                           builder: (context) => const LoginRegisterPage()),
                     );
                   },
-                  style: buttonStyle,
-                  child: const Text('Sign Up'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    onPrimary: Color.fromARGB(255, 90, 21, 3),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 18),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      side: const BorderSide(
+                          color: Color.fromARGB(255, 194, 201, 212)),
+                    ),
+                    elevation: 10,
+                  ),
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 90, 21, 3),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -105,16 +139,4 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  static final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-    backgroundColor: Colors.white,
-    foregroundColor: Colors.blueAccent,
-    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
-    textStyle: const TextStyle(fontSize: 20),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30),
-    ),
-    shadowColor: Colors.black,
-    elevation: 10,
-  );
 }
