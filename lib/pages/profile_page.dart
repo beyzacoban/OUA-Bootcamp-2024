@@ -52,13 +52,8 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CircleAvatar(
-              radius: 60,
-              backgroundImage: AssetImage(
-                  'lib/assets/images/avatar.jpeg'), // Default avatar image
-            ),
             const SizedBox(height: 16),
             _buildTextField(_nameController, 'Name'),
             const SizedBox(height: 16),
@@ -66,30 +61,32 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 16),
             _buildTextField(_languagesController, 'Programming Languages'),
             const SizedBox(height: 32),
-            ElevatedButton.icon(
-              onPressed: () {
-                _saveProfileInfo();
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Profile Saved'),
-                    content: const Text(
-                        'Your profile has been updated successfully.'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              icon: const Icon(Icons.save),
-              label: const Text('Save'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 24.0, vertical: 12.0),
-                textStyle: const TextStyle(fontSize: 18.0),
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  _saveProfileInfo();
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Profile Saved'),
+                      content: const Text(
+                          'Your profile has been updated successfully.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.save),
+                label: const Text('Save'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0, vertical: 12.0),
+                  textStyle: const TextStyle(fontSize: 18.0),
+                ),
               ),
             ),
             const SizedBox(height: 32),

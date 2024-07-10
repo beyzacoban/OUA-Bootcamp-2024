@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'profile_page.dart';
 import 'project_addition_page.dart';
+import 'settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -145,8 +146,10 @@ class _HomePageState extends State<HomePage>
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
               onTap: () {
-                // Settings sayfasına yönlendir
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
               },
             ),
           ],
