@@ -37,7 +37,7 @@ Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihti
 - **Tamamlanması Tahmin Edilen Puan:** 10 Puan
 - **Daily Scrum:** Daily Scrum toplantıları Slack kanalı üzerinden yapılmıştır.
 
-  ## Sprint Notları
+## Sprint Notları
 - Proje yönetimi için Trello kullanılmasına karar verildi.
 - Kullanıcı kimlik doğrulaması için Firebase kullanılmasına karar verildi.
 
