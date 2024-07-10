@@ -19,11 +19,10 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
   Future<void> createUser() async {
     try {
       await Auth().createUser(
-          email: emailController.text, password: passwordController.text);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        email: emailController.text,
+        password: passwordController.text,
       );
+      navigateToHomePage();
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -34,11 +33,10 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
   Future<void> signIn() async {
     try {
       await Auth().signIn(
-          email: emailController.text, password: passwordController.text);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        email: emailController.text,
+        password: passwordController.text,
       );
+      navigateToHomePage();
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -46,22 +44,31 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     }
   }
 
-  Widget buildWelcomeMessage() {
-    return const Column(
+  void navigateToHomePage() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePage()),
+    );
+  }
+
+  Widget buildMessage() {
+    return Column(
       children: [
         Text(
-          'Welcome!',
-          style: TextStyle(
+          isLogin ? 'Welcome Back!' : 'Welcome!',
+          style: const TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(
-          'We are excited to have you join us.',
+          isLogin
+              ? 'Let\'s get back to work.'
+              : 'We are excited to have you join us.',
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             color: Colors.grey,
           ),
@@ -70,27 +77,26 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     );
   }
 
-  Widget buildLoginMessage() {
-    return Column(
-      children: [
-        const Text(
-          'Welcome Back!',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
-          ),
+  Widget buildTextField(
+    TextEditingController controller,
+    String hintText, {
+    bool obscureText = false,
+  }) {
+    return TextField(
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        hintText: hintText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.blue),
         ),
-        const SizedBox(height: 10),
-        const Text(
-          'Let\'s get back to work.',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey,
-          ),
-        ),
-      ],
+        filled: true,
+        fillColor: Colors.grey[200],
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      ),
+      style: const TextStyle(fontSize: 18),
     );
   }
 
@@ -104,40 +110,11 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              isLogin ? buildLoginMessage() : buildWelcomeMessage(),
+              buildMessage(),
               const SizedBox(height: 40),
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  hintText: "Email",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.blue),
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                ),
-                style: const TextStyle(fontSize: 18),
-              ),
+              buildTextField(emailController, "Email"),
               const SizedBox(height: 20),
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.blue),
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                ),
-                style: const TextStyle(fontSize: 18),
-              ),
+              buildTextField(passwordController, "Password", obscureText: true),
               const SizedBox(height: 20),
               if (errorMessage != null)
                 Text(

@@ -14,69 +14,74 @@ class ProjectAdditionPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Project Idea"),
+        backgroundColor: Colors.teal,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              "Project Title",
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
             TextField(
               controller: titleController,
-              decoration: const InputDecoration(
-                hintText: "Project Title",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText: "Enter project title",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
             const SizedBox(height: 20),
+            const Text(
+              "Project Description",
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
             TextField(
               controller: descriptionController,
               maxLines: 5,
-              decoration: const InputDecoration(
-                hintText: "Project Description",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText: "Enter project description",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                addProject(titleController.text, descriptionController.text);
-                Navigator.pop(context);
-              },
-              child: const Text("Add"),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  addProject(titleController.text, descriptionController.text);
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  primary: Colors.teal,
+                ),
+                child: const Text(
+                  "Add Project",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ProjectSelectionPage extends StatelessWidget {
-  final List<String> projects;
-  final Function(String) joinProject;
-
-  const ProjectSelectionPage(
-      {Key? key, required this.projects, required this.joinProject})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Select a Project"),
-      ),
-      body: ListView.builder(
-        itemCount: projects.length,
-        itemBuilder: (context, index) {
-          final project = projects[index];
-          return ListTile(
-            title: Text(project),
-            onTap: () {
-              joinProject(project);
-              Navigator.pop(context);
-            },
-            trailing: const Icon(Icons.arrow_forward_ios),
-          );
-        },
       ),
     );
   }

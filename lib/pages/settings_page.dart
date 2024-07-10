@@ -31,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ListTile(
             leading: const Icon(Icons.logout),
-            title: const Text('Logout'),
+            title: const Text('Log out'),
             onTap: () {
               // Logout logic here
             },

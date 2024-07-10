@@ -15,49 +15,47 @@ class _HomePageState extends State<HomePage>
   final List<Map<String, String>> _myProjects = [];
   final List<Map<String, dynamic>> _friendsProjects = [
     {
-      'title': 'Fitness Tracker',
-      'description': 'An app to track fitness activities and progress.',
-      'language': 'Kotlin',
-      'duration': '3 months',
-      'teamSize': '3',
-      'friendName': 'Alice',
+      'title': 'Weather App',
+      'description': 'A real-time weather forecasting app.',
+      'language': 'Flutter',
+      'duration': '2 months',
+      'teamSize': '2',
+      'friendName': 'Eve',
       'joined': false
     },
     {
-      'title': 'Project Management App',
-      'description':
-          'A project management application to manage tasks and teams.',
-      'language': 'Dart',
-      'duration': '6 months',
-      'teamSize': '4',
-      'friendName': 'Bob',
+      'title': 'Recipe Finder',
+      'description': 'An app to find recipes based on ingredients.',
+      'language': 'Swift',
+      'duration': '4 months',
+      'teamSize': '5',
+      'friendName': 'Charlie',
       'joined': false
     },
   ];
   final List<Map<String, dynamic>> _exploreProjects = [
     {
-      'title': 'Fitness Tracker',
-      'description': 'An app to track fitness activities and progress.',
-      'language': 'Kotlin',
+      'title': 'Meditation Guide',
+      'description': 'An app to guide users through meditation sessions.',
+      'language': 'Flutter',
       'duration': '3 months',
       'teamSize': '3',
       'joined': false
     },
     {
-      'title': 'Project Management App',
-      'description':
-          'A project management application to manage tasks and teams.',
-      'language': 'Dart',
-      'duration': '6 months',
+      'title': 'Travel Planner',
+      'description': 'A platform to plan and share travel itineraries.',
+      'language': 'React Native',
+      'duration': '5 months',
       'teamSize': '4',
       'joined': false
     },
     {
-      'title': 'E-commerce Website',
-      'description': 'An online platform to buy and sell products.',
-      'language': 'JavaScript',
-      'duration': '4 months',
-      'teamSize': '5',
+      'title': 'Online Learning',
+      'description': 'An e-learning platform with various courses.',
+      'language': 'Python',
+      'duration': '6 months',
+      'teamSize': '6',
       'joined': false
     },
   ];
@@ -138,7 +136,6 @@ class _HomePageState extends State<HomePage>
               leading: const Icon(Icons.group),
               title: const Text('Friends'),
               onTap: () {
-                // Friends sayfasına yönlendir
                 Navigator.pop(context);
               },
             ),
