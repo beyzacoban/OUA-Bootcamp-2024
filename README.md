@@ -37,6 +37,13 @@ Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihti
 - **Tamamlanması Tahmin Edilen Puan:** 10 Puan
 - **Daily Scrum:** Daily Scrum toplantıları Slack kanalı üzerinden yapılmıştır.
 
+## Sprint Notları
+- Proje yönetimi için Trello kullanılmasına karar verildi.
+- Kullanıcı kimlik doğrulaması için Firebase kullanılmasına karar verildi.
+
+Puan tamamlama mantığı: Proje boyunca tamamlanması gereken backlog puanı 40'dır. Proje boyunca tamamlanması gereken backlog puanına bakıldığında ilk bitirilmesi istenilen puan sayısı 10 olarak belirlenmiştir ve puana ulaşılmıştır.
+
+Sprint board 
 ![Ekran görüntüsü 2024-07-08 211338](https://github.com/beyzacoban/OUA-Bootcamp-39/assets/158472675/e2247199-24cc-48ef-926e-4fd6766e4cec)
 
 
