@@ -132,7 +132,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  backgroundColor: Colors.blue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),

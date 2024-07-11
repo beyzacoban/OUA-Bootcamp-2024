@@ -12,6 +12,9 @@ class _ProfilePageState extends State<ProfilePage> {
   final _nameController = TextEditingController();
   final _interestsController = TextEditingController();
   final _languagesController = TextEditingController();
+  final _locationController = TextEditingController();
+
+  bool _isEditing = false;
 
   @override
   void initState() {
@@ -25,6 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
       _nameController.text = prefs.getString('name') ?? '';
       _interestsController.text = prefs.getString('interests') ?? '';
       _languagesController.text = prefs.getString('languages') ?? '';
+      _locationController.text = prefs.getString('location') ?? '';
     });
   }
 
@@ -33,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
     await prefs.setString('name', _nameController.text);
     await prefs.setString('interests', _interestsController.text);
     await prefs.setString('languages', _languagesController.text);
+    await prefs.setString('location', _locationController.text);
   }
 
   @override
@@ -40,6 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
     _nameController.dispose();
     _interestsController.dispose();
     _languagesController.dispose();
+    _locationController.dispose();
     super.dispose();
   }
 
@@ -48,54 +54,70 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile"),
+        actions: [
+          if (!_isEditing)
+            IconButton(
+              icon: const Icon(Icons.edit),
+              onPressed: () {
+                setState(() {
+                  _isEditing = true;
+                });
+              },
+            ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 16),
-            _buildTextField(_nameController, 'Name'),
-            const SizedBox(height: 16),
-            _buildTextField(_interestsController, 'Interests'),
-            const SizedBox(height: 16),
-            _buildTextField(_languagesController, 'Programming Languages'),
-            const SizedBox(height: 32),
-            Center(
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  _saveProfileInfo();
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Profile Saved'),
-                      content: const Text(
-                          'Your profile has been updated successfully.'),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.save),
-                label: const Text('Save'),
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24.0, vertical: 12.0),
-                  textStyle: const TextStyle(fontSize: 18.0),
-                ),
-              ),
-            ),
-            const SizedBox(height: 32),
-            const Divider(thickness: 2),
-            const SizedBox(height: 16),
-            _buildProfileInfo(),
-          ],
-        ),
+        child: _isEditing ? _buildEditForm() : _buildProfileInfo(),
       ),
+    );
+  }
+
+  Widget _buildEditForm() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 16),
+        _buildTextField(_nameController, 'Name'),
+        const SizedBox(height: 16),
+        _buildTextField(_interestsController, 'Interests'),
+        const SizedBox(height: 16),
+        _buildTextField(_languagesController, 'Programming Languages'),
+        const SizedBox(height: 16),
+        _buildTextField(_locationController, 'Location'),
+        const SizedBox(height: 32),
+        Center(
+          child: ElevatedButton.icon(
+            onPressed: () {
+              _saveProfileInfo();
+              setState(() {
+                _isEditing = false;
+              });
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Profile Saved'),
+                  content:
+                      const Text('Your profile has been updated successfully.'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(Icons.save),
+            label: const Text('Save'),
+            style: ElevatedButton.styleFrom(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+              textStyle: const TextStyle(fontSize: 18.0),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -119,26 +141,38 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Profile Information',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
         const SizedBox(height: 16),
-        Text(
-          'Name: ${_nameController.text}',
-          style: const TextStyle(fontSize: 18),
-        ),
+        _buildProfileInfoRow('Name', _nameController.text),
         const SizedBox(height: 8),
-        Text(
-          'Interests: ${_interestsController.text}',
-          style: const TextStyle(fontSize: 18),
-        ),
+        _buildProfileInfoRow('Interests', _interestsController.text),
         const SizedBox(height: 8),
-        Text(
-          'Programming Languages: ${_languagesController.text}',
-          style: const TextStyle(fontSize: 18),
-        ),
+        _buildProfileInfoRow(
+            'Programming Languages', _languagesController.text),
+        const SizedBox(height: 8),
+        const SizedBox(height: 8),
+        _buildProfileInfoRow('Location', _locationController.text),
       ],
+    );
+  }
+
+  Widget _buildProfileInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$label: ',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(fontSize: 18),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

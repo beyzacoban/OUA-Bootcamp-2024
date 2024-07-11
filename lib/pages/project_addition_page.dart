@@ -67,10 +67,10 @@ class ProjectAdditionPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  backgroundColor: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  primary: Colors.teal,
                 ),
                 child: const Text(
                   "Add Project",

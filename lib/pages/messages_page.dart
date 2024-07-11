@@ -11,6 +11,8 @@ class _MessagesPageState extends State<MessagesPage> {
   final List<Map<String, String>> _messages = [
     {'sender': 'Alice', 'message': 'Hello!'},
     {'sender': 'Me', 'message': 'Hi Alice!'},
+    {'sender': 'Bob', 'message': 'How are you?'},
+    {'sender': 'Me', 'message': 'I\'m good, thanks!'},
   ]; // Örnek mesajlar için başlangıç listesi
   final _messageController = TextEditingController();
 
@@ -42,9 +44,35 @@ class _MessagesPageState extends State<MessagesPage> {
               padding: const EdgeInsets.all(8.0),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_messages[index]['sender']!),
-                  subtitle: Text(_messages[index]['message']!),
+                return Align(
+                  alignment: _messages[index]['sender'] == 'Me'
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    margin: const EdgeInsets.symmetric(vertical: 2.0),
+                    decoration: BoxDecoration(
+                      color: _messages[index]['sender'] == 'Me'
+                          ? Colors.blue[100]
+                          : Colors.grey[300],
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _messages[index]['sender']!,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: _messages[index]['sender'] == 'Me'
+                                ? Colors.blue
+                                : Colors.black,
+                          ),
+                        ),
+                        Text(_messages[index]['message']!),
+                      ],
+                    ),
+                  ),
                 );
               },
             ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login_register_page.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key});
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +81,13 @@ class WelcomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginRegisterPage()),
+                        builder: (context) => const LoginRegisterPage(),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color.fromARGB(255, 90, 21, 3),
+                    foregroundColor: const Color.fromARGB(255, 90, 21, 3),
+                    backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 18),
                     shape: RoundedRectangleBorder(
@@ -108,12 +109,13 @@ class WelcomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginRegisterPage()),
+                        builder: (context) => const LoginRegisterPage(),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color.fromARGB(255, 90, 21, 3),
+                    foregroundColor: const Color.fromARGB(255, 90, 21, 3),
+                    backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 18),
                     shape: RoundedRectangleBorder(

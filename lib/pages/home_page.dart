@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final List<String> _friends = ["Alice", "Bob", "Charlie", "Eve"];
-
   final List<Map<String, String>> _myProjects = [];
   final List<Map<String, dynamic>> _friendsProjects = [
     {
@@ -64,6 +63,8 @@ class _HomePageState extends State<HomePage>
     },
   ];
 
+  final List<String> _joinedProjects = [];
+
   late TabController _tabController;
 
   @override
@@ -90,6 +91,11 @@ class _HomePageState extends State<HomePage>
   void _joinProject(int index, List<Map<String, dynamic>> projects) {
     setState(() {
       projects[index]['joined'] = !projects[index]['joined'];
+      if (projects[index]['joined']) {
+        _joinedProjects.add(projects[index]['title']);
+      } else {
+        _joinedProjects.remove(projects[index]['title']);
+      }
     });
   }
 
@@ -116,7 +122,7 @@ class _HomePageState extends State<HomePage>
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 33, 187, 243),
+                color: Color.fromARGB(255, 74, 130, 150),
               ),
               child: Text(
                 'Menu',
@@ -164,6 +170,18 @@ class _HomePageState extends State<HomePage>
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const MessagesPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.folder),
+              title: const Text('Joined Projects'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          JoinedProjectsPage(joinedProjects: _joinedProjects)),
                 );
               },
             ),
@@ -289,8 +307,8 @@ class _HomePageState extends State<HomePage>
                   _joinProject(index, projects);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary:
-                      projects[index]['joined'] ? Colors.green : Colors.blue,
+                  backgroundColor:
+                      projects[index]['joined'] ? Colors.green : Colors.red,
                 ),
                 child: Text(projects[index]['joined'] ? 'Joined' : 'Join'),
               ),
@@ -299,5 +317,31 @@ class _HomePageState extends State<HomePage>
         },
       );
     }
+  }
+}
+
+class JoinedProjectsPage extends StatelessWidget {
+  final List<String> joinedProjects;
+
+  const JoinedProjectsPage({super.key, required this.joinedProjects});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Joined Projects'),
+      ),
+      body: joinedProjects.isEmpty
+          ? const Center(child: Text('No joined projects yet.'))
+          : ListView.builder(
+              padding: const EdgeInsets.all(8.0),
+              itemCount: joinedProjects.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(joinedProjects[index]),
+                );
+              },
+            ),
+    );
   }
 }
