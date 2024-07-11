@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'profile_page.dart';
+import 'messages_page.dart';
+import 'friends_page.dart';
 import 'project_addition_page.dart';
 import 'settings_page.dart';
 
@@ -12,6 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  final List<String> _friends = ["Alice", "Bob", "Charlie", "Eve"];
+
   final List<Map<String, String>> _myProjects = [];
   final List<Map<String, dynamic>> _friendsProjects = [
     {
@@ -136,7 +140,11 @@ class _HomePageState extends State<HomePage>
               leading: const Icon(Icons.group),
               title: const Text('Friends'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FriendsPage(friends: _friends)),
+                );
               },
             ),
             ListTile(
@@ -146,6 +154,16 @@ class _HomePageState extends State<HomePage>
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.message),
+              title: const Text('Messages'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MessagesPage()),
                 );
               },
             ),
