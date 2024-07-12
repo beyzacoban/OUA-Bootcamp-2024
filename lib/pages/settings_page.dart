@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'login_register_page.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _isDarkMode = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,26 +18,28 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Column(
         children: <Widget>[
-          SwitchListTile(
-            title: const Text('Dark Mode'),
-            value: _isDarkMode,
-            onChanged: (bool value) {
-              setState(() {
-                _isDarkMode = value;
-                // Theme change logic can be added here.
-              });
-            },
-            secondary: const Icon(Icons.dark_mode),
-          ),
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Log out'),
             onTap: () {
-              // Logout logic here
+              _signOut(); // Çıkış işlevini çağırın
             },
           ),
         ],
       ),
     );
+  }
+
+  void _signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      // Oturum kapatma başarılı, kullanıcıyı giriş sayfasına yönlendirin.
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginRegisterPage()),
+      );
+    } catch (e) {
+      // Hata durumunda burada işlem yapabilirsiniz.
+      print('Error signing out: $e');
+    }
   }
 }

@@ -49,13 +49,17 @@ class _ChatPageState extends State<ChatPage> {
                 Expanded(
                   child: TextField(
                     controller: _messageController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Type your message...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: _sendMessage,
                 ),
               ],
@@ -69,11 +73,19 @@ class _ChatPageState extends State<ChatPage> {
   Widget _buildMessageBubble(Map<String, dynamic> message) {
     final isMe = message['sender'] == 'Me';
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
-        color: isMe ? Colors.blue[400] : Colors.grey[300],
+        color: isMe ? Colors.blue[400] : Colors.grey[200],
         borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment:
@@ -86,7 +98,7 @@ class _ChatPageState extends State<ChatPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 4.0),
+          const SizedBox(height: 4.0),
           Text(
             message['message'],
             style: TextStyle(

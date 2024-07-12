@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'chat_page.dart'; // ChatPage sınıfını doğru şekilde import edin.
+import 'chat_page.dart';
 
 class FriendsPage extends StatelessWidget {
   final List<String> friends;
@@ -10,14 +10,14 @@ class FriendsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Friends'),
+        title: const Text('Friends'),
       ),
       body: ListView.builder(
         itemCount: friends.length,
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(friends[index]),
-            leading: Icon(Icons.message), // Mesaj ikonu ekleyin
+            leading: const Icon(Icons.message),
             onTap: () {
               Navigator.push(
                 context,

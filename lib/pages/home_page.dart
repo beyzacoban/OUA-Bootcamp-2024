@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ai_assistant_page.dart';
 import 'profile_page.dart';
 import 'messages_page.dart';
 import 'friends_page.dart';
@@ -143,6 +144,18 @@ class _HomePageState extends State<HomePage>
               },
             ),
             ListTile(
+              leading: const Icon(Icons.smart_toy), // Changed to robot icon
+              title: const Text('AI Assistant'),
+              onTap: () {
+                // Navigate to the AI assistant page (We'll create this later)
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AiAssistantPage()),
+                );
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.group),
               title: const Text('Friends'),
               onTap: () {
@@ -150,16 +163,6 @@ class _HomePageState extends State<HomePage>
                   context,
                   MaterialPageRoute(
                       builder: (context) => FriendsPage(friends: _friends)),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SettingsPage()),
                 );
               },
             ),
@@ -182,6 +185,16 @@ class _HomePageState extends State<HomePage>
                   MaterialPageRoute(
                       builder: (context) =>
                           JoinedProjectsPage(joinedProjects: _joinedProjects)),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
                 );
               },
             ),

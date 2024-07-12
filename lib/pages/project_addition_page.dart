@@ -14,7 +14,7 @@ class ProjectAdditionPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Project Idea"),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF0D47A1), // Deep Blue
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,6 +26,7 @@ class ProjectAdditionPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
+                color: Color(0xFF0D47A1), // Deep Blue
               ),
             ),
             const SizedBox(height: 10),
@@ -33,8 +34,25 @@ class ProjectAdditionPage extends StatelessWidget {
               controller: titleController,
               decoration: InputDecoration(
                 hintText: "Enter project title",
+                hintStyle:
+                    const TextStyle(color: Color(0xFF90CAF9)), // Light Blue
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF0D47A1), // Deep Blue
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF0D47A1), // Deep Blue
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF0D47A1), // Deep Blue
+                  ),
                 ),
               ),
             ),
@@ -44,6 +62,7 @@ class ProjectAdditionPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
+                color: Color(0xFF0D47A1), // Deep Blue
               ),
             ),
             const SizedBox(height: 10),
@@ -52,8 +71,25 @@ class ProjectAdditionPage extends StatelessWidget {
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: "Enter project description",
+                hintStyle:
+                    const TextStyle(color: Color(0xFF90CAF9)), // Light Blue
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF0D47A1), // Deep Blue
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF0D47A1), // Deep Blue
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF0D47A1), // Deep Blue
+                  ),
                 ),
               ),
             ),
@@ -67,7 +103,7 @@ class ProjectAdditionPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  backgroundColor: Colors.teal,
+                  backgroundColor: const Color(0xFF0D47A1), // Deep Blue
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -76,6 +112,7 @@ class ProjectAdditionPage extends StatelessWidget {
                   "Add Project",
                   style: TextStyle(
                     fontSize: 18.0,
+                    color: Colors.white,
                   ),
                 ),
               ),
