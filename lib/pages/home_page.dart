@@ -118,87 +118,81 @@ class _HomePageState extends State<HomePage>
         ),
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 74, 130, 150),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color.fromARGB(255, 40, 3, 3), Colors.white],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                ),
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text('Profile'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProfilePage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.smart_toy), // Changed to robot icon
-              title: const Text('AI Assistant'),
-              onTap: () {
-                // Navigate to the AI assistant page (We'll create this later)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AiAssistantPage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.group),
-              title: const Text('Friends'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FriendsPage(friends: _friends)),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.message),
-              title: const Text('Messages'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MessagesPage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.folder),
-              title: const Text('Joined Projects'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          JoinedProjectsPage(joinedProjects: _joinedProjects)),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SettingsPage()),
-                );
-              },
-            ),
-          ],
+              _buildDrawerItem(
+                  icon: Icons.person,
+                  text: 'Profile',
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfilePage()),
+                      )),
+              _buildDrawerItem(
+                  icon: Icons.smart_toy,
+                  text: 'AI Assistant',
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AiAssistantPage()),
+                      )),
+              _buildDrawerItem(
+                  icon: Icons.group,
+                  text: 'Friends',
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                FriendsPage(friends: _friends)),
+                      )),
+              _buildDrawerItem(
+                  icon: Icons.message,
+                  text: 'Messages',
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MessagesPage()),
+                      )),
+              _buildDrawerItem(
+                  icon: Icons.folder,
+                  text: 'Joined Projects',
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => JoinedProjectsPage(
+                                joinedProjects: _joinedProjects)),
+                      )),
+              _buildDrawerItem(
+                  icon: Icons.settings,
+                  text: 'Settings',
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingsPage()),
+                      )),
+            ],
+          ),
         ),
       ),
       body: TabBarView(
@@ -234,7 +228,11 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildMyProjectsTab() {
     return _myProjects.isEmpty
-        ? const Center(child: Text("No projects added yet."))
+        ? const Center(
+            child: Text(
+            "No projects added yet.",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ))
         : ListView.builder(
             padding: const EdgeInsets.all(8.0),
             itemCount: _myProjects.length,
@@ -281,7 +279,11 @@ class _HomePageState extends State<HomePage>
   Widget _buildProjectList(
       List<Map<String, dynamic>> projects, bool isFriendsProjects) {
     if (projects.isEmpty) {
-      return const Center(child: Text("No projects added yet."));
+      return const Center(
+          child: Text(
+        "No projects added yet.",
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ));
     } else {
       return ListView.builder(
         padding: const EdgeInsets.all(8.0),
@@ -321,7 +323,7 @@ class _HomePageState extends State<HomePage>
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
-                      projects[index]['joined'] ? Colors.green : Colors.red,
+                      projects[index]['joined'] ? Colors.green : Colors.blue,
                 ),
                 child: Text(projects[index]['joined'] ? 'Joined' : 'Join'),
               ),
@@ -330,6 +332,20 @@ class _HomePageState extends State<HomePage>
         },
       );
     }
+  }
+
+  ListTile _buildDrawerItem(
+      {required IconData icon,
+      required String text,
+      required GestureTapCallback onTap}) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.white),
+      title: Text(
+        text,
+        style: const TextStyle(color: Colors.white, fontSize: 18),
+      ),
+      onTap: onTap,
+    );
   }
 }
 

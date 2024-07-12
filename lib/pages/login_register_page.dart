@@ -22,7 +22,11 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         email: emailController.text,
         password: passwordController.text,
       );
-      navigateToHomePage();
+      setState(() {
+        isLogin = true;
+        emailController.clear();
+        passwordController.clear();
+      });
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -57,20 +61,21 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         Text(
           isLogin ? 'Welcome Back!' : 'Welcome!',
           style: const TextStyle(
-            fontSize: 28,
+            fontSize: 30,
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: Colors.white,
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         Text(
           isLogin
               ? 'Let\'s get back to work.'
               : 'We are excited to have you join us.',
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 16,
-            color: Colors.grey,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ],
@@ -87,84 +92,106 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle:
+            const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: Colors.blue),
+          borderSide: const BorderSide(color: Colors.white),
         ),
         filled: true,
-        fillColor: Colors.grey[200],
+        fillColor: Colors.black.withOpacity(0.8),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       ),
-      style: const TextStyle(fontSize: 18),
+      style: const TextStyle(
+          fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              buildMessage(),
-              const SizedBox(height: 40),
-              buildTextField(emailController, "Email"),
-              const SizedBox(height: 20),
-              buildTextField(passwordController, "Password", obscureText: true),
-              const SizedBox(height: 20),
-              if (errorMessage != null)
-                Text(
-                  errorMessage!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.red, fontSize: 16),
-                ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (isLogin) {
-                    signIn();
-                  } else {
-                    createUser();
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: Text(
-                  isLogin ? "Log in" : "Register",
-                  style: const TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              ),
-              const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isLogin = !isLogin;
-                  });
-                },
-                child: Text(
-                  isLogin
-                      ? "Don't have an account? Register"
-                      : "Already have an account? Login",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-            ],
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'lib/assets/images/teamwork.jpeg',
+            fit: BoxFit.fill,
           ),
-        ),
+          Container(
+            color: Colors.black.withOpacity(0.6),
+          ),
+          Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  buildMessage(),
+                  const SizedBox(height: 40),
+                  buildTextField(emailController, "Email"),
+                  const SizedBox(height: 20),
+                  buildTextField(passwordController, "Password",
+                      obscureText: true),
+                  const SizedBox(height: 20),
+                  if (errorMessage != null)
+                    Text(
+                      errorMessage!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (isLogin) {
+                        signIn();
+                      } else {
+                        createUser();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: Text(
+                      isLogin ? "Log in" : "Register",
+                      style: const TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isLogin = !isLogin;
+                      });
+                    },
+                    child: Text(
+                      isLogin
+                          ? "Don't have an account? Register"
+                          : "Already have an account? Login",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
