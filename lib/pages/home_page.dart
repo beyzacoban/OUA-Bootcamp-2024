@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage>
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 40, 3, 3), Colors.white],
+              colors: [Color(0xFFCE93D8), Colors.white],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage>
                 child: Text(
                   'Menu',
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
@@ -214,6 +214,7 @@ class _HomePageState extends State<HomePage>
                       ),
                     );
                   },
+                  backgroundColor: Color(0xFFFFCCBC),
                   child: const Icon(Icons.add),
                 ),
               ),
@@ -238,6 +239,7 @@ class _HomePageState extends State<HomePage>
             itemCount: _myProjects.length,
             itemBuilder: (context, index) {
               return Card(
+                color: Colors.orange[50],
                 elevation: 5,
                 margin: const EdgeInsets.symmetric(vertical: 8.0),
                 child: ListTile(
@@ -263,7 +265,8 @@ class _HomePageState extends State<HomePage>
                     ],
                   ),
                   trailing: IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
+                    icon: const Icon(Icons.delete,
+                        color: Color.fromARGB(255, 111, 24, 18)),
                     onPressed: () {
                       setState(() {
                         _myProjects.removeAt(index);
@@ -290,6 +293,7 @@ class _HomePageState extends State<HomePage>
         itemCount: projects.length,
         itemBuilder: (context, index) {
           return Card(
+            color: isFriendsProjects ? Colors.lightBlue[50] : Colors.green[50],
             elevation: 5,
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             child: ListTile(
@@ -322,8 +326,9 @@ class _HomePageState extends State<HomePage>
                   _joinProject(index, projects);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      projects[index]['joined'] ? Colors.green : Colors.blue,
+                  backgroundColor: projects[index]['joined']
+                      ? Color.fromARGB(255, 234, 177, 244)
+                      : Colors.white,
                 ),
                 child: Text(projects[index]['joined'] ? 'Joined' : 'Join'),
               ),
@@ -339,10 +344,11 @@ class _HomePageState extends State<HomePage>
       required String text,
       required GestureTapCallback onTap}) {
     return ListTile(
-      leading: Icon(icon, color: Colors.white),
+      leading: Icon(icon, color: Color.fromARGB(255, 0, 0, 0)),
       title: Text(
         text,
-        style: const TextStyle(color: Colors.white, fontSize: 18),
+        style:
+            const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 18),
       ),
       onTap: onTap,
     );

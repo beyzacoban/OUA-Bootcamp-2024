@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final _locationController = TextEditingController();
 
   bool _isEditing = false;
+  File? _profileImage;
 
   @override
   void initState() {
@@ -29,6 +32,10 @@ class _ProfilePageState extends State<ProfilePage> {
       _interestsController.text = prefs.getString('interests') ?? '';
       _languagesController.text = prefs.getString('languages') ?? '';
       _locationController.text = prefs.getString('location') ?? '';
+      String? imagePath = prefs.getString('profileImage');
+      if (imagePath != null) {
+        _profileImage = File(imagePath);
+      }
     });
   }
 
@@ -38,6 +45,19 @@ class _ProfilePageState extends State<ProfilePage> {
     await prefs.setString('interests', _interestsController.text);
     await prefs.setString('languages', _languagesController.text);
     await prefs.setString('location', _locationController.text);
+    if (_profileImage != null) {
+      await prefs.setString('profileImage', _profileImage!.path);
+    }
+  }
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+      });
+    }
   }
 
   @override
@@ -77,6 +97,27 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 16),
+        Center(
+          child: GestureDetector(
+            onTap: _pickImage,
+            child: CircleAvatar(
+              radius: 60,
+              backgroundImage:
+                  _profileImage != null ? FileImage(_profileImage!) : null,
+              child: _profileImage == null
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.add_a_photo, size: 60),
+                        SizedBox(height: 8),
+                        Text("Galeriden bir fotoğraf seçiniz.")
+                      ],
+                    )
+                  : null,
+            ),
+          ),
+        ),
         const SizedBox(height: 16),
         _buildTextField(_nameController, 'Name'),
         const SizedBox(height: 16),
@@ -142,13 +183,23 @@ class _ProfilePageState extends State<ProfilePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
+        Center(
+          child: CircleAvatar(
+            radius: 60,
+            backgroundImage:
+                _profileImage != null ? FileImage(_profileImage!) : null,
+            child: _profileImage == null
+                ? const Icon(Icons.person, size: 60)
+                : null,
+          ),
+        ),
+        const SizedBox(height: 16),
         _buildProfileInfoRow('Name', _nameController.text),
         const SizedBox(height: 8),
         _buildProfileInfoRow('Interests', _interestsController.text),
         const SizedBox(height: 8),
         _buildProfileInfoRow(
             'Programming Languages', _languagesController.text),
-        const SizedBox(height: 8),
         const SizedBox(height: 8),
         _buildProfileInfoRow('Location', _locationController.text),
       ],

@@ -1,8 +1,9 @@
-// File: ai_assistant_page.dart
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class AiAssistantPage extends StatefulWidget {
-  const AiAssistantPage({super.key});
+  const AiAssistantPage({Key? key}) : super(key: key);
 
   @override
   _AiAssistantPageState createState() => _AiAssistantPageState();
@@ -12,11 +13,37 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   final TextEditingController _questionController = TextEditingController();
   final List<Map<String, String>> _conversation = [];
 
-  // Placeholder for your AI response logic
+  static const String dialogflowToken = 'YOUR_DIALOGFLOW_CLIENT_ACCESS_TOKEN';
+  static const String dialogflowURL =
+      'https://dialogflow.googleapis.com/v2/projects/YOUR_PROJECT_ID/agent/sessions/SESSION_ID:detectIntent';
+
   Future<String> getAIResponse(String question) async {
-    // TODO: Replace with your actual AI API call
-    await Future.delayed(const Duration(seconds: 1)); // Simulate API call
-    return "This is a placeholder AI response to: '$question'";
+    final uri = Uri.parse(dialogflowURL);
+    final response = await http.post(
+      uri.replace(
+        path: uri.path.replaceAll('YOUR_PROJECT_ID', 'YOUR_PROJECT_ID'),
+        query: 'v=20150910',
+      ),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': 'Bearer $dialogflowToken',
+      },
+      body: jsonEncode({
+        'queryInput': {
+          'text': {
+            'text': question,
+            'languageCode': 'en',
+          },
+        },
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return data['queryResult']['fulfillmentText'];
+    } else {
+      return 'Error communicating with AI service.';
+    }
   }
 
   @override
@@ -46,7 +73,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
                   child: TextField(
                     controller: _questionController,
                     decoration: const InputDecoration(
-                      hintText: 'Ask me anything about your projects...',
+                      hintText: 'Ask me anything...',
                     ),
                   ),
                 ),

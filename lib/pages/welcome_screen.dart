@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Text(
                   'TeamHub',
                   style: TextStyle(
-                    fontSize: 84,
+                    fontSize: 70,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
