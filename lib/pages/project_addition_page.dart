@@ -14,7 +14,7 @@ class ProjectAdditionPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Project Idea"),
-        backgroundColor: const Color(0xFF0D47A1), // Deep Blue
+        backgroundColor: const Color(0xFFADD8E6),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,7 +26,7 @@ class ProjectAdditionPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0D47A1), // Deep Blue
+                color: Color.fromARGB(255, 3, 82, 86),
               ),
             ),
             const SizedBox(height: 10),
@@ -34,24 +34,23 @@ class ProjectAdditionPage extends StatelessWidget {
               controller: titleController,
               decoration: InputDecoration(
                 hintText: "Enter project title",
-                hintStyle:
-                    const TextStyle(color: Color(0xFF90CAF9)), // Light Blue
+                hintStyle: const TextStyle(color: Color(0xFF90CAF9)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF0D47A1), // Deep Blue
+                    color: Color(0xFFADD8E6),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF0D47A1), // Deep Blue
+                    color: Color(0xFFADD8E6),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF0D47A1), // Deep Blue
+                    color: Color(0xFFADD8E6),
                   ),
                 ),
               ),
@@ -62,7 +61,7 @@ class ProjectAdditionPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0D47A1), // Deep Blue
+                color: Color.fromARGB(255, 3, 82, 86),
               ),
             ),
             const SizedBox(height: 10),
@@ -71,24 +70,23 @@ class ProjectAdditionPage extends StatelessWidget {
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: "Enter project description",
-                hintStyle:
-                    const TextStyle(color: Color(0xFF90CAF9)), // Light Blue
+                hintStyle: const TextStyle(color: Color(0xFF90CAF9)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF0D47A1), // Deep Blue
+                    color: Color(0xFFADD8E6),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF0D47A1), // Deep Blue
+                    color: Color(0xFFADD8E6),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF0D47A1), // Deep Blue
+                    color: Color(0xFFADD8E6),
                   ),
                 ),
               ),
@@ -103,7 +101,7 @@ class ProjectAdditionPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  backgroundColor: const Color(0xFF0D47A1), // Deep Blue
+                  backgroundColor: const Color.fromARGB(255, 3, 82, 86),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

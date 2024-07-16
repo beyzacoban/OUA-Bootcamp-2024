@@ -64,32 +64,35 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
-      body: Column(
-        children: <Widget>[
-          if (_isLoggedIn)
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            if (_isLoggedIn)
+              ListTile(
+                leading: const Icon(Icons.person_add),
+                title: const Text('Invite Friends'),
+                onTap: () {
+                  _navigateToInviteScreen(context);
+                },
+              ),
             ListTile(
-              leading: const Icon(Icons.person_add),
-              title: const Text('Invite Friends'),
+              leading: const Icon(Icons.help),
+              title: const Text('Help'),
               onTap: () {
-                _navigateToInviteScreen(context);
+                _navigateToHelpScreen(context);
               },
             ),
-          ListTile(
-            leading: const Icon(Icons.help),
-            title: const Text('Help'),
-            onTap: () {
-              _navigateToHelpScreen(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Log out'),
-            onTap: () {
-              _showSignOutDialog(context);
-            },
-          ),
-          const SizedBox(height: 20),
-        ],
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Log out'),
+              onTap: () {
+                _showSignOutDialog(context);
+              },
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
@@ -150,130 +153,139 @@ class HelpScreen extends StatelessWidget {
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+          child: Card(
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    children: [
+                      Text(
+                        '• ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigoAccent,
+                        ),
+                      ),
+                      Text(
+                        'Help Information',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigoAccent,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
                   Text(
-                    '• ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
+                    'TeamHub application is an application where you can experience a project'
+                    ' as a team by adding your new friends or friends you know.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Text(
+                        '• ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigoAccent,
+                        ),
+                      ),
+                      Text(
+                        'Getting Started',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFFF6961),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'First, you can easily register by creating a password with your'
+                    ' e-mail address, and then log in again with your user information.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    'Help Information',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
+                    'Afterwards, you can upload your current project to the application and see'
+                    ' the projects of your friends or people you do not know in Explore.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'You can participate in the project that interests you and do many projects'
+                    ' by having a pleasant time with your friends!',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Text(
+                        '• ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigoAccent,
+                        ),
+                      ),
+                      Text(
+                        'Additional features',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigoAccent,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'You can chat as you wish with the artificial intelligence called teamchat,'
+                    ' which is connected to our application, and ask questions about where you are stuck.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'If you want to stay in constant communication with your friends, you can chat unlimitedly and at any time.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Text(
+                        '• ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFFF6961),
+                        ),
+                      ),
+                      Text(
+                        'Contact Us',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFFF6961),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'If you have any questions, you can contact us via this e-mail and get all kinds of support teamhub@teamhubsupport.com.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
-              SizedBox(height: 16),
-              Text(
-                'TeamHub application is an application where you can experience a project'
-                ' as a team by adding your new friends or friends you know.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Text(
-                    '• ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
-                  ),
-                  Text(
-                    'Getting Started',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Text(
-                'First, you can easily register by creating a password with your'
-                ' e-mail address, and then log in again with your user information.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                'Afterwards, you can upload your current project to the application and see'
-                ' the projects of your friends or people you do not know in Explore.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                'You can participate in the project that interests you and do many projects'
-                ' by having a pleasant time with your friends!',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Text(
-                    '• ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
-                  ),
-                  Text(
-                    'Additional features',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Text(
-                'You can chat as you wish with the artificial intelligence called teamchat,'
-                ' which is connected to our application, and ask questions about where you are stuck.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                'If you want to stay in constant communication with your friends, you can chat unlimitedly and at any time.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Text(
-                    '• ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
-                  ),
-                  Text(
-                    'Contact Us',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Text(
-                'If you have any questions, you can contact us via this e-mail and get all kinds of support teamhub@teamhubsupport.com.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-            ],
+            ),
           ),
         ),
       ),
@@ -312,43 +324,59 @@ class _InviteScreenState extends State<InviteScreen> {
   }
 
   Widget buildRegisterForm() {
-    return Column(
-      children: [
-        TextField(
-          controller: emailController,
-          decoration: InputDecoration(
-            hintText: "Email",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+    return Card(
+      elevation: 6,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            const Text(
+              'Invite a Friend',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFFFF6961),
+              ),
             ),
-            filled: true,
-            fillColor: Colors.grey.withOpacity(0.2),
-          ),
-        ),
-        const SizedBox(height: 10),
-        TextField(
-          controller: passwordController,
-          decoration: InputDecoration(
-            hintText: "Password",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+            const SizedBox(height: 20),
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
             ),
-            filled: true,
-            fillColor: Colors.grey.withOpacity(0.2),
-          ),
-          obscureText: true,
+            const SizedBox(height: 20),
+            if (errorMessage != null)
+              Text(
+                errorMessage!,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 6, 3, 3),
+                ),
+              ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: createUser,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFFF6961),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                textStyle:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              child: const Text('Invite'),
+            ),
+          ],
         ),
-        const SizedBox(height: 10),
-        if (errorMessage != null)
-          Text(
-            errorMessage!,
-            style: const TextStyle(color: Colors.red),
-          ),
-        ElevatedButton(
-          onPressed: createUser,
-          child: const Text('Register'),
-        ),
-      ],
+      ),
     );
   }
 
@@ -358,17 +386,9 @@ class _InviteScreenState extends State<InviteScreen> {
       appBar: AppBar(
         title: const Text('Invite Friends'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Welcome to Invite Screen!',
-              style: TextStyle(fontSize: 24),
-            ),
-            buildRegisterForm(),
-          ],
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: buildRegisterForm(),
       ),
     );
   }

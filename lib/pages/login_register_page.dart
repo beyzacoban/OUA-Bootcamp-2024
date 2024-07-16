@@ -13,6 +13,9 @@ class LoginRegisterPage extends StatefulWidget {
 class _LoginRegisterPageState extends State<LoginRegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
   bool isLogin = true;
   String? errorMessage;
 
@@ -26,6 +29,9 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         isLogin = true;
         emailController.clear();
         passwordController.clear();
+        firstNameController.clear();
+        lastNameController.clear();
+        userNameController.clear();
       });
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -99,12 +105,15 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
           borderSide: const BorderSide(color: Colors.white),
         ),
         filled: true,
-        fillColor: Colors.black.withOpacity(0.8),
+        fillColor: Colors.black.withOpacity(0.5),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       ),
       style: const TextStyle(
-          fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 20,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 
@@ -130,6 +139,24 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                 children: [
                   buildMessage(),
                   const SizedBox(height: 40),
+                  if (!isLogin) ...[
+                    Row(
+                      children: [
+                        Expanded(
+                          child:
+                              buildTextField(firstNameController, "First Name"),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child:
+                              buildTextField(lastNameController, "Last Name"),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    buildTextField(userNameController, "User Name"),
+                    const SizedBox(height: 20),
+                  ],
                   buildTextField(emailController, "Email"),
                   const SizedBox(height: 20),
                   buildTextField(passwordController, "Password",
@@ -140,9 +167,10 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                       errorMessage!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: Colors.red,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                        color: Colors.red,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -164,7 +192,9 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                     child: Text(
                       isLogin ? "Log in" : "Register",
                       style: const TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
