@@ -16,7 +16,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final List<String> _friends = ["Alice", "Bob", "Charlie", "Eve"];
-  final List<Map<String, String>> _myProjects = [];
+  final List<Map<String, String>> _myProjects = [
+    {
+      'title': 'Personal Blog',
+      'description': 'A blog app to share my thoughts and experiences.',
+      'language': 'Flutter',
+      'duration': 'Ongoing',
+      'teamSize': '2',
+    },
+  ];
   final List<Map<String, dynamic>> _friendsProjects = [
     {
       'title': 'Weather App',
@@ -34,6 +42,15 @@ class _HomePageState extends State<HomePage>
       'duration': '4 months',
       'teamSize': '5',
       'friendName': 'Charlie',
+      'joined': false
+    },
+    {
+      'title': 'Task Manager',
+      'description': 'A collaborative task management app for teams.',
+      'language': 'Java',
+      'duration': '6 months',
+      'teamSize': '4',
+      'friendName': 'Bob',
       'joined': false
     },
   ];
@@ -60,6 +77,14 @@ class _HomePageState extends State<HomePage>
       'language': 'Python',
       'duration': '6 months',
       'teamSize': '6',
+      'joined': false
+    },
+    {
+      'title': 'Language Learning',
+      'description': 'A gamified language learning app.',
+      'language': 'JavaScript',
+      'duration': '8 months',
+      'teamSize': '7',
       'joined': false
     },
   ];
@@ -121,7 +146,7 @@ class _HomePageState extends State<HomePage>
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFFCE93D8), Colors.white],
+              colors: [Color(0xFF546E7A), Colors.black87],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -136,7 +161,7 @@ class _HomePageState extends State<HomePage>
                 child: Text(
                   'Menu',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Color.fromARGB(255, 255, 255, 255),
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
@@ -214,8 +239,8 @@ class _HomePageState extends State<HomePage>
                       ),
                     );
                   },
-                  backgroundColor: Color(0xFFFFCCBC),
-                  child: const Icon(Icons.add),
+                  backgroundColor: const Color(0xFF37474F),
+                  child: const Icon(Icons.add, color: Colors.white),
                 ),
               ),
             ],
@@ -232,41 +257,49 @@ class _HomePageState extends State<HomePage>
         ? const Center(
             child: Text(
             "No projects added yet.",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ))
         : ListView.builder(
             padding: const EdgeInsets.all(8.0),
             itemCount: _myProjects.length,
             itemBuilder: (context, index) {
               return Card(
-                color: Colors.orange[50],
+                color: const Color(0xFF455A64),
                 elevation: 5,
                 margin: const EdgeInsets.symmetric(vertical: 8.0),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text(_myProjects[index]['title']!,
                       style: const TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold)),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 10),
                       Text('Description: ${_myProjects[index]['description']!}',
-                          style: const TextStyle(fontSize: 16.0)),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                              color: Colors.white70)),
                       if (_myProjects[index].containsKey('language'))
                         Text('Language: ${_myProjects[index]['language']!}',
-                            style: const TextStyle(fontSize: 16.0)),
+                            style: const TextStyle(
+                                fontSize: 16.0, color: Colors.white70)),
                       if (_myProjects[index].containsKey('duration'))
                         Text('Duration: ${_myProjects[index]['duration']!}',
-                            style: const TextStyle(fontSize: 16.0)),
+                            style: const TextStyle(
+                                fontSize: 16.0, color: Colors.white70)),
                       if (_myProjects[index].containsKey('teamSize'))
                         Text('Team Size: ${_myProjects[index]['teamSize']!}',
-                            style: const TextStyle(fontSize: 16.0)),
+                            style: const TextStyle(
+                                fontSize: 16.0, color: Colors.white70)),
                     ],
                   ),
                   trailing: IconButton(
-                    icon: const Icon(Icons.delete,
-                        color: Color.fromARGB(255, 111, 24, 18)),
+                    icon: const Icon(Icons.delete, color: Colors.white),
                     onPressed: () {
                       setState(() {
                         _myProjects.removeAt(index);
@@ -285,7 +318,8 @@ class _HomePageState extends State<HomePage>
       return const Center(
           child: Text(
         "No projects added yet.",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
       ));
     } else {
       return ListView.builder(
@@ -293,44 +327,55 @@ class _HomePageState extends State<HomePage>
         itemCount: projects.length,
         itemBuilder: (context, index) {
           return Card(
-            color: isFriendsProjects ? Colors.lightBlue[50] : Colors.green[50],
+            color: projects[index]['joined']
+                ? const Color(0xFF263238)
+                : const Color(0xFF78909C),
             elevation: 5,
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             child: ListTile(
               contentPadding: const EdgeInsets.all(16.0),
-              title: Text(projects[index]['title']!,
+              title: Text(projects[index]['title'],
                   style: const TextStyle(
-                      fontSize: 20.0, fontWeight: FontWeight.bold)),
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                  Text('Description: ${projects[index]['description']!}',
-                      style: const TextStyle(fontSize: 16.0)),
-                  if (projects[index].containsKey('language'))
-                    Text('Language: ${projects[index]['language']!}',
-                        style: const TextStyle(fontSize: 16.0)),
-                  if (projects[index].containsKey('duration'))
-                    Text('Duration: ${projects[index]['duration']!}',
-                        style: const TextStyle(fontSize: 16.0)),
-                  if (projects[index].containsKey('teamSize'))
-                    Text('Team Size: ${projects[index]['teamSize']!}',
-                        style: const TextStyle(fontSize: 16.0)),
+                  Text('Description: ${projects[index]['description']}',
+                      style: const TextStyle(
+                          fontSize: 16.0, color: Colors.white70)),
+                  Text('Language: ${projects[index]['language']}',
+                      style: const TextStyle(
+                          fontSize: 16.0, color: Colors.white70)),
+                  Text('Duration: ${projects[index]['duration']}',
+                      style: const TextStyle(
+                          fontSize: 16.0, color: Colors.white70)),
+                  Text('Team Size: ${projects[index]['teamSize']}',
+                      style: const TextStyle(
+                          fontSize: 16.0, color: Colors.white70)),
                   if (isFriendsProjects)
-                    Text('Friend: ${projects[index]['friendName']!}',
-                        style: const TextStyle(fontSize: 16.0)),
+                    Text('Friend: ${projects[index]['friendName']}',
+                        style: const TextStyle(
+                            fontSize: 16.0, color: Colors.white70)),
                 ],
               ),
               trailing: ElevatedButton(
-                onPressed: () {
-                  _joinProject(index, projects);
-                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: projects[index]['joined']
-                      ? Color.fromARGB(255, 234, 177, 244)
-                      : Colors.white,
+                      ? Colors.red
+                      : Color.fromARGB(255, 195, 234, 2),
                 ),
-                child: Text(projects[index]['joined'] ? 'Joined' : 'Join'),
+                child: Text(
+                  projects[index]['joined'] ? 'Leave' : 'Join',
+                  style: const TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  setState(() {
+                    _joinProject(index, projects);
+                  });
+                },
               ),
             ),
           );
@@ -344,12 +389,10 @@ class _HomePageState extends State<HomePage>
       required String text,
       required GestureTapCallback onTap}) {
     return ListTile(
-      leading: Icon(icon, color: Color.fromARGB(255, 0, 0, 0)),
-      title: Text(
-        text,
-        style:
-            const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 18),
-      ),
+      leading: Icon(icon, color: Colors.white),
+      title: Text(text,
+          style: const TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
       onTap: onTap,
     );
   }
@@ -364,19 +407,27 @@ class JoinedProjectsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Joined Projects'),
+        title: const Text("Joined Projects"),
       ),
-      body: joinedProjects.isEmpty
-          ? const Center(child: Text('No joined projects yet.'))
-          : ListView.builder(
-              padding: const EdgeInsets.all(8.0),
-              itemCount: joinedProjects.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(joinedProjects[index]),
-                );
-              },
+      body: ListView.builder(
+        padding: const EdgeInsets.all(8.0),
+        itemCount: joinedProjects.length,
+        itemBuilder: (context, index) {
+          return Card(
+            color: const Color(0xFF37474F),
+            elevation: 5,
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(16.0),
+              title: Text(joinedProjects[index],
+                  style: const TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
             ),
+          );
+        },
+      ),
     );
   }
 }
