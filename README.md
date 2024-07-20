@@ -45,7 +45,8 @@ Puan tamamlama mantığı: Proje boyunca tamamlanması gereken backlog puanı 40
 
 Sprint board 
 
-<img src="https://github.com/user-attachments/assets/8e2fbaf8-c362-4646-bb98-78dcaddee3d0" width="800" height="533" />
+<img src="https://github.com/user-attachments/assets/e0a1236b-df1f-43a9-a964-ad55af2ffe39" style="width: 50%; height: auto;">
+
 
 
 ### Toplantı ve Slack Kanalı Ekran Görüntüleri
