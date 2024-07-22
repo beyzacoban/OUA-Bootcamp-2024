@@ -106,9 +106,9 @@ class _ProfilePageState extends State<ProfilePage> {
               backgroundImage:
                   _profileImage != null ? FileImage(_profileImage!) : null,
               child: _profileImage == null
-                  ? Column(
+                  ? const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(Icons.add_a_photo, size: 60),
                         SizedBox(height: 8),
                         Text("Galeriden bir fotoğraf seçiniz.")

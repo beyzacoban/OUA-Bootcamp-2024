@@ -24,15 +24,15 @@ class _FriendsPageState extends State<FriendsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Options'),
-          content: Text('Select an action'),
+          title: const Text('Options'),
+          content: const Text('Select an action'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 _showConfirmationDialog(context, friend);
               },
-              child: Text('Remove Friend'),
+              child: const Text('Remove Friend'),
             ),
             TextButton(
               onPressed: () {
@@ -44,13 +44,13 @@ class _FriendsPageState extends State<FriendsPage> {
                   ),
                 );
               },
-              child: Text('Send Message'),
+              child: const Text('Send Message'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -63,14 +63,14 @@ class _FriendsPageState extends State<FriendsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Are you sure?'),
-          content: Text('Do you really want to remove this friend?'),
+          title: const Text('Are you sure?'),
+          content: const Text('Do you really want to remove this friend?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('No'),
+              child: const Text('No'),
             ),
             TextButton(
               onPressed: () {
@@ -79,7 +79,7 @@ class _FriendsPageState extends State<FriendsPage> {
                 });
                 Navigator.of(context).pop();
               },
-              child: Text('Yes'),
+              child: const Text('Yes'),
             ),
           ],
         );

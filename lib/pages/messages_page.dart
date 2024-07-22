@@ -13,7 +13,7 @@ class _MessagesPageState extends State<MessagesPage> {
     {'sender': 'Me', 'message': 'Hi Alice!'},
     {'sender': 'Bob', 'message': 'How are you?'},
     {'sender': 'Me', 'message': 'I\'m good, thanks!'},
-  ]; // Örnek mesajlar için başlangıç listesi
+  ];
   final _messageController = TextEditingController();
 
   void _sendMessage() {
