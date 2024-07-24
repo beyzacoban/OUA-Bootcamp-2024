@@ -133,7 +133,6 @@ class _HomePageState extends State<HomePage>
         title: const Text("Projects"),
         actions: [
           IconButton(
-            // Bildirim butonu
             icon: const Icon(Icons.notifications, color: Colors.black),
             onPressed: () {
               Navigator.push(

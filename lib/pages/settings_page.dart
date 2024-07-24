@@ -170,7 +170,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigoAccent,
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                       Text(
@@ -178,7 +178,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigoAccent,
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                     ],
@@ -197,7 +197,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigoAccent,
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                       Text(
@@ -205,7 +205,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFFFF6961),
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                     ],
@@ -234,7 +234,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigoAccent,
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                       Text(
@@ -242,7 +242,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigoAccent,
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                     ],
@@ -265,7 +265,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFFFF6961),
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                       Text(
@@ -273,7 +273,7 @@ class HelpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFFFF6961),
+                          color: Color(0xFF546E7A),
                         ),
                       ),
                     ],
@@ -338,7 +338,7 @@ class _InviteScreenState extends State<InviteScreen> {
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFF6961),
+                color: Color(0xFF546E7A),
               ),
             ),
             const SizedBox(height: 20),
@@ -363,14 +363,16 @@ class _InviteScreenState extends State<InviteScreen> {
             ElevatedButton(
               onPressed: createUser,
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFF6961),
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                textStyle:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF546E7A)),
               ),
               child: const Text('Invite'),
             ),

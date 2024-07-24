@@ -53,7 +53,7 @@ class _MessagesPageState extends State<MessagesPage> {
                     margin: const EdgeInsets.symmetric(vertical: 2.0),
                     decoration: BoxDecoration(
                       color: _messages[index]['sender'] == 'Me'
-                          ? Colors.blue[100]
+                          ? Color(0xFF546E7A)
                           : Colors.grey[300],
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -65,7 +65,7 @@ class _MessagesPageState extends State<MessagesPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: _messages[index]['sender'] == 'Me'
-                                ? Colors.blue
+                                ? Color(0xFF546E7A)
                                 : Colors.black,
                           ),
                         ),
