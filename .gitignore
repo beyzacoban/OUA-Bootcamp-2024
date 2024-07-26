@@ -45,4 +45,3 @@ app.*.map.json
 # Environment variables
 .env
 
-lib/pages/ai_assistant_page.dart
