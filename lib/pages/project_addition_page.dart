@@ -13,8 +13,13 @@ class ProjectAdditionPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Project Idea"),
-        backgroundColor: const Color(0xFF37474F), // Daha koyu bir renk
+        title: const Text(
+          "Add Project Idea",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: const Color(0xFF37474F),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,7 +31,7 @@ class ProjectAdditionPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF546E7A), // Daha koyu bir renk
+                color: Color(0xFF546E7A),
               ),
             ),
             const SizedBox(height: 10),
@@ -34,24 +39,23 @@ class ProjectAdditionPage extends StatelessWidget {
               controller: titleController,
               decoration: InputDecoration(
                 hintText: "Enter project title",
-                hintStyle: const TextStyle(
-                    color: Color(0xFF90A4AE)), // Daha koyu bir renk
+                hintStyle: const TextStyle(color: Color(0xFF90A4AE)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF37474F), // Daha koyu bir renk
+                    color: Color(0xFF37474F),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF37474F), // Daha koyu bir renk
+                    color: Color(0xFF37474F),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF37474F), // Daha koyu bir renk
+                    color: Color(0xFF37474F),
                   ),
                 ),
               ),
@@ -62,7 +66,7 @@ class ProjectAdditionPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF546E7A), // Daha koyu bir renk
+                color: Color(0xFF546E7A),
               ),
             ),
             const SizedBox(height: 10),
@@ -71,24 +75,23 @@ class ProjectAdditionPage extends StatelessWidget {
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: "Enter project description",
-                hintStyle: const TextStyle(
-                    color: Color(0xFF90A4AE)), // Daha koyu bir renk
+                hintStyle: const TextStyle(color: Color(0xFF90A4AE)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF37474F), // Daha koyu bir renk
+                    color: Color(0xFF37474F),
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF37474F), // Daha koyu bir renk
+                    color: Color(0xFF37474F),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: const BorderSide(
-                    color: Color(0xFF37474F), // Daha koyu bir renk
+                    color: Color(0xFF37474F),
                   ),
                 ),
               ),
@@ -103,8 +106,7 @@ class ProjectAdditionPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  backgroundColor:
-                      const Color(0xFF263238), // Daha koyu bir renk
+                  backgroundColor: const Color(0xFF263238),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

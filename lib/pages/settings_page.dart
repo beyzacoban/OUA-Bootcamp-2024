@@ -62,7 +62,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text('Settings', style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color(0xFF37474F),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -70,21 +71,21 @@ class _SettingsPageState extends State<SettingsPage> {
           children: <Widget>[
             if (_isLoggedIn)
               ListTile(
-                leading: const Icon(Icons.person_add),
+                leading: const Icon(Icons.person_add, color: Color(0xFF546E7A)),
                 title: const Text('Invite Friends'),
                 onTap: () {
                   _navigateToInviteScreen(context);
                 },
               ),
             ListTile(
-              leading: const Icon(Icons.help),
+              leading: const Icon(Icons.help, color: Color(0xFF546E7A)),
               title: const Text('Help'),
               onTap: () {
                 _navigateToHelpScreen(context);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.logout),
+              leading: const Icon(Icons.logout, color: Color(0xFF546E7A)),
               title: const Text('Log out'),
               onTap: () {
                 _showSignOutDialog(context);
@@ -149,6 +150,7 @@ class HelpScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Help'),
+        backgroundColor: const Color(0xFF37474F),
       ),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
@@ -165,14 +167,12 @@ class HelpScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        '• ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF546E7A),
-                        ),
+                      Icon(
+                        Icons.help_outline,
+                        size: 20,
+                        color: Color(0xFF546E7A),
                       ),
+                      SizedBox(width: 8),
                       Text(
                         'Help Information',
                         style: TextStyle(
@@ -192,14 +192,12 @@ class HelpScreen extends StatelessWidget {
                   SizedBox(height: 16),
                   Row(
                     children: [
-                      Text(
-                        '• ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF546E7A),
-                        ),
+                      Icon(
+                        Icons.start,
+                        size: 20,
+                        color: Color(0xFF546E7A),
                       ),
+                      SizedBox(width: 8),
                       Text(
                         'Getting Started',
                         style: TextStyle(
@@ -229,14 +227,12 @@ class HelpScreen extends StatelessWidget {
                   SizedBox(height: 16),
                   Row(
                     children: [
-                      Text(
-                        '• ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF546E7A),
-                        ),
+                      Icon(
+                        Icons.add,
+                        size: 20,
+                        color: Color(0xFF546E7A),
                       ),
+                      SizedBox(width: 8),
                       Text(
                         'Additional features',
                         style: TextStyle(
@@ -260,14 +256,12 @@ class HelpScreen extends StatelessWidget {
                   SizedBox(height: 16),
                   Row(
                     children: [
-                      Text(
-                        '• ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF546E7A),
-                        ),
+                      Icon(
+                        Icons.contact_mail,
+                        size: 20,
+                        color: Color(0xFF546E7A),
                       ),
+                      SizedBox(width: 8),
                       Text(
                         'Contact Us',
                         style: TextStyle(
@@ -302,83 +296,59 @@ class InviteScreen extends StatefulWidget {
 
 class _InviteScreenState extends State<InviteScreen> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  String? errorMessage;
+  String? successMessage;
 
-  Future<void> createUser() async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      setState(() {
-        emailController.clear();
-        passwordController.clear();
-        errorMessage = null;
-      });
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
+  void inviteFriend() {
+    setState(() {
+      if (emailController.text.isNotEmpty) {
+        successMessage = "Invitation sent";
+      }
+    });
   }
 
-  Widget buildRegisterForm() {
-    return Card(
-      elevation: 6,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const Text(
-              'Invite a Friend',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF546E7A),
-              ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            if (errorMessage != null)
-              Text(
-                errorMessage!,
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 6, 3, 3),
-                ),
-              ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: createUser,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                textStyle: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF546E7A)),
-              ),
-              child: const Text('Invite'),
-            ),
-          ],
+  Widget buildInviteForm() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'E-Mail',
+          style: TextStyle(
+            color: Color(0xFF546E7A),
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
+        const SizedBox(height: 8.0),
+        TextField(
+          controller: emailController,
+          decoration: InputDecoration(
+            hintText: 'Enter your friend\'s e-mail',
+            filled: true,
+            fillColor: Colors.grey[200],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16.0),
+        ElevatedButton(
+          onPressed: inviteFriend,
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: const Color(0xFF546E7A),
+          ),
+          child: const Text('Invite'),
+        ),
+        if (successMessage != null) ...[
+          const SizedBox(height: 16.0),
+          Text(
+            successMessage!,
+            style: const TextStyle(
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ],
     );
   }
 
@@ -386,11 +356,24 @@ class _InviteScreenState extends State<InviteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Invite Friends'),
+        title:
+            const Text('Invite Friends', style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color(0xFF37474F),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: buildRegisterForm(),
+        child: SingleChildScrollView(
+          child: Card(
+            elevation: 4,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: buildInviteForm(),
+            ),
+          ),
+        ),
       ),
     );
   }

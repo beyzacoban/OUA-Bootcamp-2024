@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'pages/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // dotenv kütüphanesini ekleyin
 import 'firebase_options.dart';
+import 'pages/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // .env dosyasını yükleyin
+  // await dotenv.load();
+
+  // Firebase'i başlatın
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MyApp());
 }
 

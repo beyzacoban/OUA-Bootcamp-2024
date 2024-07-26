@@ -149,7 +149,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               );
             },
-            icon: const Icon(Icons.save),
+            icon: const Icon(
+              Icons.save,
+              color: Color(0xFF37474F),
+            ),
             label: const Text('Save'),
             style: ElevatedButton.styleFrom(
               padding:

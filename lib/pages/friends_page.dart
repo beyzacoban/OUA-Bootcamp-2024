@@ -40,7 +40,9 @@ class _FriendsPageState extends State<FriendsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChatPage(friendName: friend),
+                    builder: (context) => ChatPage(
+                      friendName: friend,
+                    ),
                   ),
                 );
               },
