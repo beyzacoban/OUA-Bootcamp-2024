@@ -1,0 +1,29 @@
+{
+    "sorular": [
+      {
+        "soru": "teamhub nedir",
+        "cevap": "TeamHub, proje sahiplerini işbirliği yapmak isteyen geliştiricilerle buluşturan bir uygulamadır. Proje sahipleri projelerini tanıtabilir ve uygun takım üyelerini bulabilir, geliştiriciler ise ilgi ve becerilerine göre projelere başvurabilir."
+      },
+      {
+        "soru": "teamhub hangi özelliklere sahiptir",
+        "cevap": "TeamHub, proje yönetimi, kullanıcı yönetimi, mesajlaşma, takım üyelerini keşfetme ve proje başvuru gibi özelliklere sahiptir."
+      },
+      {
+        "soru": "teamhub kimler için uygundur",
+        "cevap": "TeamHub, proje sahipleri, geliştiriciler, tasarımcılar ve işbirliği yapmak isteyen tüm profesyoneller için uygundur."
+      },
+      {
+        "soru": "teamhub nasıl çalışır",
+        "cevap": "TeamHub, kullanıcıların projelerini oluşturup yayınlamalarını ve diğer kullanıcıların bu projelere başvurmasını sağlar. Kullanıcılar, projelerdeki rollerine göre katkıda bulunabilir ve projelerin ilerlemesini takip edebilirler."
+      },
+      {
+        "soru": "teamhub avantajları nelerdir",
+        "cevap": "TeamHub, proje sahiplerinin uygun takım üyelerini hızlı bir şekilde bulmasını sağlar ve geliştiricilere çeşitli projelerde yer alma fırsatı sunar. Ayrıca, işbirliğini ve iletişimi kolaylaştırır."
+      },
+      {
+        "soru": "teamhub ile projelere nasıl katılabilirim",
+        "cevap": "TeamHub'da projelere katılmak için ilgi alanlarınıza ve becerilerinize uygun projeleri keşfedebilir ve bu projelere başvuru yapabilirsiniz."
+      }
+    ]
+  }
+  
