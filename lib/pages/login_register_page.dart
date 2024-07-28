@@ -13,13 +13,22 @@ class LoginRegisterPage extends StatefulWidget {
 class _LoginRegisterPageState extends State<LoginRegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
   bool isLogin = true;
+  bool isPasswordVisible = false;
   String? errorMessage;
 
   Future<void> createUser() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      setState(() {
+        errorMessage = "Passwords do not match!";
+      });
+      return;
+    }
     try {
       await Auth().createUser(
         email: emailController.text,
@@ -29,6 +38,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         isLogin = true;
         emailController.clear();
         passwordController.clear();
+        confirmPasswordController.clear();
         firstNameController.clear();
         lastNameController.clear();
         userNameController.clear();
@@ -49,7 +59,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       navigateToHomePage();
     } on FirebaseAuthException catch (e) {
       setState(() {
-        errorMessage = e.message;
+        errorMessage = "Invalid email or password!";
       });
     }
   }
@@ -58,6 +68,99 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const HomePage()),
+    );
+  }
+
+  void showResetPasswordDialog() {
+    final TextEditingController resetEmailController = TextEditingController();
+    final TextEditingController newPasswordController = TextEditingController();
+    final TextEditingController confirmNewPasswordController =
+        TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Reset Password',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: resetEmailController,
+                decoration: const InputDecoration(
+                  hintText: "Enter your email",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: newPasswordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: "Enter new password",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: confirmNewPasswordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: "Confirm new password",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                if (newPasswordController.text !=
+                    confirmNewPasswordController.text) {
+                  setState(() {
+                    errorMessage = "Passwords do not match!";
+                  });
+                  return;
+                }
+                try {
+                  await FirebaseAuth.instance
+                      .sendPasswordResetEmail(email: resetEmailController.text);
+                  Navigator.of(context).pop();
+                } on FirebaseAuthException catch (e) {
+                  setState(() {
+                    errorMessage = e.message;
+                  });
+                }
+              },
+              child: const Text('Reset Password',
+                  style: TextStyle(color: Colors.black)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child:
+                  const Text('Cancel', style: TextStyle(color: Colors.black)),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -92,6 +195,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     TextEditingController controller,
     String hintText, {
     bool obscureText = false,
+    Widget? suffixIcon,
   }) {
     return TextField(
       controller: controller,
@@ -108,6 +212,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         fillColor: Colors.black.withOpacity(0.5),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        suffixIcon: suffixIcon,
       ),
       style: const TextStyle(
         fontSize: 20,
@@ -159,8 +264,44 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                   ],
                   buildTextField(emailController, "Email"),
                   const SizedBox(height: 20),
-                  buildTextField(passwordController, "Password",
-                      obscureText: true),
+                  buildTextField(
+                    passwordController,
+                    "Password",
+                    obscureText: !isPasswordVisible,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  if (!isLogin)
+                    buildTextField(
+                      confirmPasswordController,
+                      "Confirm Password",
+                      obscureText: !isPasswordVisible,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
+                        },
+                      ),
+                    ),
                   const SizedBox(height: 20),
                   if (errorMessage != null)
                     Text(
@@ -190,33 +331,49 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                       ),
                     ),
                     child: Text(
-                      isLogin ? "Log in" : "Register",
+                      isLogin ? 'Login' : 'Register',
                       style: const TextStyle(
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () {
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
                       setState(() {
                         isLogin = !isLogin;
                       });
                     },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
                     child: Text(
-                      isLogin
-                          ? "Don't have an account? Register"
-                          : "Already have an account? Login",
-                      textAlign: TextAlign.center,
+                      isLogin ? 'Create an Account' : 'Have an Account? Login',
                       style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  if (isLogin)
+                    TextButton(
+                      onPressed: showResetPasswordDialog,
+                      child: const Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
