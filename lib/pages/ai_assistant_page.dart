@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-const apiKey = 'AIzaSyAjhEEJNT2_kVYTvknNzGqdH3-DFeFEqPU';
+const apiKey = '';
 
 class AiAssistantPage extends StatefulWidget {
   const AiAssistantPage({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
     apiKey: apiKey,
   );
 
-  final Map<String, String> _teamHubInfo = {};
+  Map<String, String> _teamHubInfo = {};
 
   @override
   void initState() {
