@@ -8,18 +8,33 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagesPageState extends State<MessagesPage> {
-  final List<Map<String, String>> _messages = [
-    {'sender': 'Alice', 'message': 'Hello!'},
-    {'sender': 'Me', 'message': 'Hi Alice!'},
-    {'sender': 'Bob', 'message': 'How are you?'},
-    {'sender': 'Me', 'message': 'I\'m good, thanks!'},
+  final List<Map<String, dynamic>> _messages = [
+    {
+      'group': 'Project Alpha',
+      'messages': [
+        {'sender': 'Alice', 'message': 'Hello Team!'},
+        {'sender': 'Me', 'message': 'Hi Alice!'},
+      ]
+    },
+    {
+      'group': 'Project Beta',
+      'messages': [
+        {'sender': 'Bob', 'message': 'How is everyone?'},
+        {'sender': 'Me', 'message': 'Doing well, thanks!'},
+      ]
+    }
   ];
+
+  String _selectedGroup = 'Project Alpha';
   final _messageController = TextEditingController();
 
   void _sendMessage() {
     if (_messageController.text.isNotEmpty) {
       setState(() {
-        _messages.add({'sender': 'Me', 'message': _messageController.text});
+        final groupIndex =
+            _messages.indexWhere((group) => group['group'] == _selectedGroup);
+        _messages[groupIndex]['messages']
+            .add({'sender': 'Me', 'message': _messageController.text});
         _messageController.clear();
       });
     }
@@ -33,26 +48,46 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final groupMessages = _messages
+        .firstWhere((group) => group['group'] == _selectedGroup)['messages'];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Messages"),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (String group) {
+              setState(() {
+                _selectedGroup = group;
+              });
+            },
+            itemBuilder: (BuildContext context) {
+              return _messages.map<PopupMenuItem<String>>((group) {
+                return PopupMenuItem<String>(
+                  value: group['group'],
+                  child: Text(group['group']),
+                );
+              }).toList();
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(8.0),
-              itemCount: _messages.length,
+              itemCount: groupMessages.length,
               itemBuilder: (context, index) {
                 return Align(
-                  alignment: _messages[index]['sender'] == 'Me'
+                  alignment: groupMessages[index]['sender'] == 'Me'
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   child: Container(
                     padding: const EdgeInsets.all(8.0),
                     margin: const EdgeInsets.symmetric(vertical: 2.0),
                     decoration: BoxDecoration(
-                      color: _messages[index]['sender'] == 'Me'
+                      color: groupMessages[index]['sender'] == 'Me'
                           ? Color(0xFF546E7A)
                           : Colors.grey[300],
                       borderRadius: BorderRadius.circular(8.0),
@@ -61,15 +96,15 @@ class _MessagesPageState extends State<MessagesPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          _messages[index]['sender']!,
+                          groupMessages[index]['sender']!,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: _messages[index]['sender'] == 'Me'
+                            color: groupMessages[index]['sender'] == 'Me'
                                 ? Color(0xFF546E7A)
                                 : Colors.black,
                           ),
                         ),
-                        Text(_messages[index]['message']!),
+                        Text(groupMessages[index]['message']!),
                       ],
                     ),
                   ),

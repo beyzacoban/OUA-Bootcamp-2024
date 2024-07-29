@@ -64,6 +64,7 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: const Text('Settings', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF37474F),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -149,8 +150,9 @@ class HelpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Help'),
+        title: const Text('Help', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF37474F),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
@@ -359,6 +361,7 @@ class _InviteScreenState extends State<InviteScreen> {
         title:
             const Text('Invite Friends', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF37474F),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

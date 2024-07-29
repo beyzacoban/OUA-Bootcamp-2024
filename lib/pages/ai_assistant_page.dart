@@ -20,7 +20,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
     apiKey: apiKey,
   );
 
-  Map<String, String> _teamHubInfo = {};
+  final Map<String, String> _teamHubInfo = {};
 
   @override
   void initState() {
@@ -115,21 +115,21 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
     final lowerQuestion = question.toLowerCase();
 
     if (lowerQuestion.contains('teamhub nedir')) {
-      return 'TeamHub nedir?';
+      return 'TeamHub, proje sahiplerini işbirliği yapmak isteyen geliştiricilerle buluşturan bir uygulamadır. Proje sahipleri projelerini tanıtabilir ve uygun takım üyelerini bulabilir, geliştiriciler ise ilgi ve becerilerine göre projelere başvurabilir.';
     } else if (lowerQuestion.contains('özellikler') ||
         lowerQuestion.contains('ne sağlar')) {
-      return 'TeamHub hangi özelliklere sahiptir?';
+      return 'TeamHub, proje yönetimi, kullanıcı yönetimi, mesajlaşma, takım üyelerini keşfetme ve proje başvuru gibi özelliklere sahiptir.';
     } else if (lowerQuestion.contains('hedef kitle') ||
         lowerQuestion.contains('kimler kullanır')) {
-      return 'TeamHub kimler için uygundur?';
+      return 'TeamHub, proje sahipleri, geliştiriciler, tasarımcılar ve işbirliği yapmak isteyen tüm profesyoneller için uygundur.';
     } else if (lowerQuestion.contains('nasıl çalışır')) {
-      return 'TeamHub nasıl çalışır?';
+      return 'TeamHub, kullanıcıların projelerini oluşturup yayınlamalarını ve diğer kullanıcıların bu projelere başvurmasını sağlar. Kullanıcılar, projelerdeki rollerine göre katkıda bulunabilir ve projelerin ilerlemesini takip edebilirler.';
     } else if (lowerQuestion.contains('avantajlar')) {
-      return 'TeamHub avantajları nelerdir?';
+      return 'TeamHub, proje sahiplerinin uygun takım üyelerini hızlı bir şekilde bulmasını sağlar ve geliştiricilere çeşitli projelerde yer alma fırsatı sunar. Ayrıca, işbirliğini ve iletişimi kolaylaştırır.';
     } else if (lowerQuestion.contains('katılabilirim')) {
-      return 'TeamHub ile projelere nasıl katılabilirim?';
+      return 'TeamHub\'da projelere katılmak için ilgi alanlarınıza ve becerilerinize uygun projeleri keşfedebilir ve bu projelere başvuru yapabilirsiniz.';
     } else {
-      return 'TeamHub hakkında daha fazla bilgi ver.';
+      return 'TeamHub hakkında daha fazla bilgi verin.';
     }
   }
 }

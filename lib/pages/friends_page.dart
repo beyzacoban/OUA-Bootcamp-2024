@@ -24,15 +24,18 @@ class _FriendsPageState extends State<FriendsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Options'),
-          content: const Text('Select an action'),
+          title: const Text('Options', style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color(0xFF263238),
+          content: const Text('Select an action',
+              style: TextStyle(color: Colors.white)),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 _showConfirmationDialog(context, friend);
               },
-              child: const Text('Remove Friend'),
+              child: const Text('Remove Friend',
+                  style: TextStyle(color: Colors.red)),
             ),
             TextButton(
               onPressed: () {
@@ -46,13 +49,14 @@ class _FriendsPageState extends State<FriendsPage> {
                   ),
                 );
               },
-              child: const Text('Send Message'),
+              child: const Text('Send Message',
+                  style: TextStyle(color: Colors.green)),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
             ),
           ],
         );
@@ -65,14 +69,17 @@ class _FriendsPageState extends State<FriendsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Are you sure?'),
-          content: const Text('Do you really want to remove this friend?'),
+          title: const Text('Are you sure?',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color(0xFF263238),
+          content: const Text('Do you really want to remove this friend?',
+              style: TextStyle(color: Colors.white)),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('No'),
+              child: const Text('No', style: TextStyle(color: Colors.green)),
             ),
             TextButton(
               onPressed: () {
@@ -81,7 +88,7 @@ class _FriendsPageState extends State<FriendsPage> {
                 });
                 Navigator.of(context).pop();
               },
-              child: const Text('Yes'),
+              child: const Text('Yes', style: TextStyle(color: Colors.red)),
             ),
           ],
         );
@@ -93,17 +100,31 @@ class _FriendsPageState extends State<FriendsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Friends'),
+        title: const Text(
+          'Friends',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color(0xFF37474F),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: ListView.builder(
         itemCount: friendsList.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(friendsList[index]),
-            leading: const Icon(Icons.message),
-            onTap: () {
-              _showOptionsDialog(context, friendsList[index]);
-            },
+          return Card(
+            color: const Color(0xFF37474F),
+            elevation: 5,
+            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(16.0),
+              title: Text(
+                friendsList[index],
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              leading: const Icon(Icons.message, color: Colors.white),
+              onTap: () {
+                _showOptionsDialog(context, friendsList[index]);
+              },
+            ),
           );
         },
       ),
