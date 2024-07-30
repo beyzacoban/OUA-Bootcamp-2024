@@ -1,28 +1,29 @@
 {
-  "sorular": [
+    "sorular": [
       {
-          "soru": "teamhub nedir",
-          "cevap": "TeamHub, proje sahiplerinin işbirliği yapmak isteyen geliştiricilerle buluşmasını sağlayan bir platformdur. Proje sahipleri, projelerini tanıtabilir ve uygun takım üyelerini arayabilirken, geliştiriciler ilgi ve yeteneklerine göre projelere başvurabilir. Bu şekilde, proje sahipleri en iyi ekip üyelerini bulabilir ve geliştiriciler de kendilerine uygun projelerde yer alabilirler."
+        "soru": "teamhub nedir",
+        "cevap": "TeamHub, proje sahiplerinin işbirliği yapmak isteyen geliştiricilerle buluşmasını sağlayan bir platformdur. Proje sahipleri, projelerini tanıtabilir ve uygun takım üyelerini arayabilirken, geliştiriciler ilgi ve yeteneklerine göre projelere başvurabilir. Bu şekilde, proje sahipleri en iyi ekip üyelerini bulabilir ve geliştiriciler de kendilerine uygun projelerde yer alabilirler."
       },
       {
-          "soru": "teamhub hangi özelliklere sahiptir",
-          "cevap": "TeamHub, çeşitli özellikler sunar: Proje yönetimi, kullanıcı yönetimi, mesajlaşma, takım üyelerini keşfetme ve proje başvuru gibi. Proje sahipleri projelerini detaylı bir şekilde yönetebilir, kullanıcıları yönetebilir ve etkili bir iletişim sağlayabilirler. Ayrıca, uygulama üzerinden projelerdeki takım üyeleriyle etkileşimde bulunabilirsiniz."
+        "soru": "teamhub hangi özelliklere sahiptir",
+        "cevap": "TeamHub, çeşitli özellikler sunar: Proje yönetimi, kullanıcı yönetimi, mesajlaşma, takım üyelerini keşfetme ve proje başvuru gibi. Proje sahipleri projelerini detaylı bir şekilde yönetebilir, kullanıcıları yönetebilir ve etkili bir iletişim sağlayabilirler. Ayrıca, uygulama üzerinden projelerdeki takım üyeleriyle etkileşimde bulunabilirsiniz."
       },
       {
-          "soru": "teamhub kimler için uygundur",
-          "cevap": "TeamHub, farklı profesyonel gruplar için uygundur. Bu gruplar arasında proje sahipleri, yazılımcılar, tasarımcılar ve işbirliği yapmak isteyen diğer profesyoneller bulunur. Herkes, projelerini tanıtmak veya projelere katılmak için TeamHub'u kullanabilir."
+        "soru": "teamhub kimler için uygundur",
+        "cevap": "TeamHub, farklı profesyonel gruplar için uygundur. Bu gruplar arasında proje sahipleri, yazılımcılar, tasarımcılar ve işbirliği yapmak isteyen diğer profesyoneller bulunur. Herkes, projelerini tanıtmak veya projelere katılmak için TeamHub'u kullanabilir."
       },
       {
-          "soru": "teamhub nasıl çalışır",
-          "cevap": "TeamHub, kullanıcıların projelerini oluşturup paylaşmalarına olanak tanır. Proje sahipleri projelerini detaylı bir şekilde tanıtırken, diğer kullanıcılar bu projelere başvurabilir. Katılımcılar, projelerdeki belirli rollerde yer alabilir ve projelerin ilerlemesini takip edebilir. Bu süreç, proje yönetimini ve işbirliğini kolaylaştırır."
+        "soru": "teamhub nasıl çalışır",
+        "cevap": "TeamHub, kullanıcıların projelerini oluşturup paylaşmalarına olanak tanır. Proje sahipleri projelerini detaylı bir şekilde tanıtırken, diğer kullanıcılar bu projelere başvurabilir. Katılımcılar, projelerdeki belirli rollerde yer alabilir ve projelerin ilerlemesini takip edebilir. Bu süreç, proje yönetimini ve işbirliğini kolaylaştırır."
       },
       {
-          "soru": "teamhub avantajları nelerdir",
-          "cevap": "TeamHub'un sağladığı avantajlar şunlardır: Proje sahipleri uygun takım üyelerini hızla bulabilir, geliştiricilere farklı projelerde yer alma fırsatı sunar ve işbirliği ile iletişimi daha verimli hale getirir. Ayrıca, projeler üzerinde ortak çalışma ve bilgi paylaşımını kolaylaştırır."
+        "soru": "teamhub avantajları nelerdir",
+        "cevap": "TeamHub'un sağladığı avantajlar şunlardır: Proje sahipleri uygun takım üyelerini hızla bulabilir, geliştiricilere farklı projelerde yer alma fırsatı sunar ve işbirliği ile iletişimi daha verimli hale getirir. Ayrıca, projeler üzerinde ortak çalışma ve bilgi paylaşımını kolaylaştırır."
       },
       {
-          "soru": "teamhub ile projelere nasıl katılabilirim",
-          "cevap": "TeamHub'da projelere katılmak için ilgi alanlarınıza ve becerilerinize uygun projeleri keşfetmeniz gerekmektedir. İlgilendiğiniz projeleri bulduktan sonra, bu projelere başvuruda bulunabilir ve proje sahipleriyle iletişime geçebilirsiniz. Başvurular genellikle proje sahipleri tarafından değerlendirilir ve uygun görülenler projelere dahil edilir."
+        "soru": "teamhub ile projelere nasıl katılabilirim",
+        "cevap": "TeamHub'da projelere katılmak için ilgi alanlarınıza ve becerilerinize uygun projeleri keşfetmeniz gerekmektedir. İlgilendiğiniz projeleri bulduktan sonra, bu projelere başvuruda bulunabilir ve proje sahipleriyle iletişime geçebilirsiniz. Başvurular genellikle proje sahipleri tarafından değerlendirilir ve uygun görülenler projelere dahil edilir."
       }
-  ]
-}
+    ]
+  }
+  

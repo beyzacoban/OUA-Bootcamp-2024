@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-const apiKey = '';
+const apiKey = 'AIzaSyAjhEEJNT2_kVYTvknNzGqdH3-DFeFEqPU';
 
 class AiAssistantPage extends StatefulWidget {
   const AiAssistantPage({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
     apiKey: apiKey,
   );
 
-  final Map<String, String> _teamHubInfo = {};
+  Map<String, String> _teamHubInfo = {};
 
   @override
   void initState() {
@@ -34,10 +34,13 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
           .loadString('lib/assets/images/data/teamhub_info.json');
       final data = json.decode(response);
       final List questions = data['sorular'];
+      final Map<String, String> loadedInfo = {};
       for (var item in questions) {
-        _teamHubInfo[item['soru'].toLowerCase()] = item['cevap'];
+        loadedInfo[item['soru'].toLowerCase()] = item['cevap'];
       }
-      print('Loaded teamHubInfo: $_teamHubInfo'); // Debug
+      setState(() {
+        _teamHubInfo = loadedInfo;
+      });
     } catch (e) {
       print('Error loading teamHubInfo: $e'); // Debug
     }
@@ -100,36 +103,12 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
     if (_teamHubInfo.containsKey(lowerQuestion)) {
       return _teamHubInfo[lowerQuestion]!;
     } else {
-      final prompt = _generatePrompt(question);
-      final content = [Content.text(prompt)];
       try {
-        final response = await _model.generateContent(content);
+        final response = await _model.generateContent([Content.text(question)]);
         return response.text ?? 'Yanıt alınamadı.';
       } catch (e) {
         return 'Hata: ${e.toString()}';
       }
-    }
-  }
-
-  String _generatePrompt(String question) {
-    final lowerQuestion = question.toLowerCase();
-
-    if (lowerQuestion.contains('teamhub nedir')) {
-      return 'TeamHub, proje sahiplerini işbirliği yapmak isteyen geliştiricilerle buluşturan bir uygulamadır. Proje sahipleri projelerini tanıtabilir ve uygun takım üyelerini bulabilir, geliştiriciler ise ilgi ve becerilerine göre projelere başvurabilir.';
-    } else if (lowerQuestion.contains('özellikler') ||
-        lowerQuestion.contains('ne sağlar')) {
-      return 'TeamHub, proje yönetimi, kullanıcı yönetimi, mesajlaşma, takım üyelerini keşfetme ve proje başvuru gibi özelliklere sahiptir.';
-    } else if (lowerQuestion.contains('hedef kitle') ||
-        lowerQuestion.contains('kimler kullanır')) {
-      return 'TeamHub, proje sahipleri, geliştiriciler, tasarımcılar ve işbirliği yapmak isteyen tüm profesyoneller için uygundur.';
-    } else if (lowerQuestion.contains('nasıl çalışır')) {
-      return 'TeamHub, kullanıcıların projelerini oluşturup yayınlamalarını ve diğer kullanıcıların bu projelere başvurmasını sağlar. Kullanıcılar, projelerdeki rollerine göre katkıda bulunabilir ve projelerin ilerlemesini takip edebilirler.';
-    } else if (lowerQuestion.contains('avantajlar')) {
-      return 'TeamHub, proje sahiplerinin uygun takım üyelerini hızlı bir şekilde bulmasını sağlar ve geliştiricilere çeşitli projelerde yer alma fırsatı sunar. Ayrıca, işbirliğini ve iletişimi kolaylaştırır.';
-    } else if (lowerQuestion.contains('katılabilirim')) {
-      return 'TeamHub\'da projelere katılmak için ilgi alanlarınıza ve becerilerinize uygun projeleri keşfedebilir ve bu projelere başvuru yapabilirsiniz.';
-    } else {
-      return 'TeamHub hakkında daha fazla bilgi verin.';
     }
   }
 }

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ProjectAdditionPage extends StatelessWidget {
+  // Function to be called when a project is added, takes title and description as parameters
   final Function(String, String) addProject;
-
+  // Constructor for the ProjectAdditionPage widget
   const ProjectAdditionPage({Key? key, required this.addProject})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Controllers for the title and description text fields
     final TextEditingController titleController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
+        // Top app bar
         title: const Text(
           "Add Project Idea",
           style: TextStyle(

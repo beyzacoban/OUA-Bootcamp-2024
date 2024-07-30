@@ -16,7 +16,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  // List of friends
   final List<String> _friends = ["Alice", "Bob", "Charlie", "Eve"];
+  // List of user's own projects
   final List<Map<String, String>> _myProjects = [
     {
       'title': 'Personal Blog',
@@ -26,6 +28,7 @@ class _HomePageState extends State<HomePage>
       'teamSize': '2',
     },
   ];
+  // List of friends' projects
   final List<Map<String, dynamic>> _friendsProjects = [
     {
       'title': 'Weather App',
@@ -55,6 +58,7 @@ class _HomePageState extends State<HomePage>
       'joined': false
     },
   ];
+  // List of explore projects
   final List<Map<String, dynamic>> _exploreProjects = [
     {
       'title': 'Meditation Guide',
@@ -89,7 +93,7 @@ class _HomePageState extends State<HomePage>
       'joined': false
     },
   ];
-
+  // List of joined projects
   final List<String> _joinedProjects = [];
 
   late TabController _tabController;
@@ -100,6 +104,7 @@ class _HomePageState extends State<HomePage>
     _tabController = TabController(length: 3, vsync: this);
   }
 
+  // Function to add a project
   void _addProject(String title, String description) {
     setState(() {
       _myProjects.add({
@@ -109,12 +114,14 @@ class _HomePageState extends State<HomePage>
     });
   }
 
+  // Function to delete a project
   void _deleteProject(int index) {
     setState(() {
       _myProjects.removeAt(index);
     });
   }
 
+  // Function to join or leave a project
   void _joinProject(int index, List<Map<String, dynamic>> projects) {
     setState(() {
       projects[index]['joined'] = !projects[index]['joined'];
@@ -128,13 +135,16 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    // This widget builds the main scaffold structure of the Projects screen.
     return Scaffold(
       appBar: AppBar(
         title: const Text("Projects"),
         actions: [
+          // Notification Icon Button
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.black),
             onPressed: () {
+              // Navigates to the Notifications page when the icon is pressed.
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -144,6 +154,7 @@ class _HomePageState extends State<HomePage>
             },
           ),
         ],
+        // Tab Bar at the bottom of the AppBar
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: Colors.white,
@@ -156,8 +167,10 @@ class _HomePageState extends State<HomePage>
           ],
         ),
       ),
+      // Navigation Drawer
       drawer: Drawer(
         child: Container(
+          // Gradient background for the drawer
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFF546E7A), Colors.black87],
@@ -168,6 +181,7 @@ class _HomePageState extends State<HomePage>
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
+              // Drawer Header with Menu text
               const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.transparent,
@@ -180,6 +194,7 @@ class _HomePageState extends State<HomePage>
                       fontWeight: FontWeight.bold),
                 ),
               ),
+              // Drawer Items for navigation (profile, AI, friends, etc.)
               _buildDrawerItem(
                   icon: Icons.person,
                   text: 'Profile',
@@ -234,12 +249,14 @@ class _HomePageState extends State<HomePage>
           ),
         ),
       ),
+      // Main Content Area controlled by the Tab Bar
       body: TabBarView(
         controller: _tabController,
         children: [
+          // My Projects Tab with Floating Add Button
           Stack(
             children: [
-              _buildMyProjectsTab(),
+              _buildMyProjectsTab(), // Builds the list of user's projects.
               Positioned(
                 bottom: 16,
                 right: 16,
@@ -259,8 +276,8 @@ class _HomePageState extends State<HomePage>
               ),
             ],
           ),
-          _buildProjectList(_friendsProjects, true),
-          _buildProjectList(_exploreProjects, false),
+          _buildProjectList(_friendsProjects, true), // Friend's Projects tab
+          _buildProjectList(_exploreProjects, false), // Explore Projects tab
         ],
       ),
     );
@@ -379,7 +396,7 @@ class _HomePageState extends State<HomePage>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: projects[index]['joined']
                       ? Colors.red
-                      : Color.fromARGB(255, 195, 234, 2),
+                      : const Color.fromARGB(255, 195, 234, 2),
                 ),
                 child: Text(
                   projects[index]['joined'] ? 'Leave' : 'Join',

@@ -7,16 +7,19 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Main structure of the screen
       body: Stack(
-        fit: StackFit.expand,
+        // Overlays elements on top of each other
+        fit: StackFit.expand, // Make the stack fill the entire screen
         children: <Widget>[
+          // Background Image
           Image.asset(
-            'lib/assets/images/teamwork.jpeg',
-            fit: BoxFit.fill,
-            color: Colors.black.withOpacity(0.6),
+            'lib/assets/images/teamwork.jpeg', // Path to image asset
+            fit: BoxFit.fill, // Make the image cover the entire space
+            color: Colors.black.withOpacity(0.6), // Darken the image
             colorBlendMode: BlendMode.darken,
           ),
-
+          // Gradient Overlay (adds transparency from top to bottom)
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -34,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start, // Align to top
             children: <Widget>[
-              // Top Content
+              // Top Content (Title)
               const Padding(
                 padding: EdgeInsets.only(top: 100),
                 child: Text(
@@ -47,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
 
-              const Spacer(), // Push bottom content down
+              const Spacer(), // Pushes the bottom content to the end of the screen
 
               // Bottom Section (Slogan and Button)
               Padding(
@@ -63,9 +66,12 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(
+                        height: 30), // Add space between slogan and button
+                    // Get Started Button
                     ElevatedButton(
                       onPressed: () {
+                        // Navigate to the Login/Register Page
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -76,7 +82,8 @@ class WelcomeScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
                         backgroundColor: Colors.white,
-                        minimumSize: const Size(double.infinity, 60),
+                        minimumSize:
+                            const Size(double.infinity, 60), // Full width
                         textStyle: const TextStyle(fontSize: 25),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

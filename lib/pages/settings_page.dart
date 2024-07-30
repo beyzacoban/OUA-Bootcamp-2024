@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'login_register_page.dart';
 
 class SettingsPage extends StatefulWidget {
+  // Constructor for the SettingsPage widget
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
@@ -10,18 +11,22 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _isLoggedIn = false;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  String? errorMessage;
+  // State variables
+  bool _isLoggedIn = false; // Tracks user login status
+  final TextEditingController emailController =
+      TextEditingController(); // Controller for email input
+  final TextEditingController passwordController =
+      TextEditingController(); // Controller for password input
+  String? errorMessage; // Stores potential error messages during authentication
 
   @override
   void initState() {
     super.initState();
-    _checkLoginStatus();
+    _checkLoginStatus(); // Check if a user is already logged in
   }
 
   void _checkLoginStatus() {
+    // Listen for changes in user authentication state
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       setState(() {
         _isLoggedIn = user != null;
@@ -29,32 +34,38 @@ class _SettingsPageState extends State<SettingsPage> {
     });
   }
 
+  // Function to create a new user
   Future<void> createUser() async {
     try {
+      // Attempt to create a new user with Firebase Authentication
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      // Clear input fields and reset error messages
       setState(() {
         emailController.clear();
         passwordController.clear();
         errorMessage = null;
       });
     } on FirebaseAuthException catch (e) {
+      // Handle Firebase authentication errors
       setState(() {
         errorMessage = e.message;
       });
     }
   }
 
+  // Function to sign the user out
   void _signOut() async {
     try {
-      await FirebaseAuth.instance.signOut();
+      await FirebaseAuth.instance.signOut(); // Sign out from Firebase
+      // Navigate back to the login/register page after signing out
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginRegisterPage()),
       );
     } catch (e) {
-      print('Error signing out: $e');
+      print('Error signing out: $e'); // Print any errors
     }
   }
 
@@ -62,6 +73,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // Top app bar with title
         title: const Text('Settings', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF37474F),
         iconTheme: const IconThemeData(color: Colors.white),
@@ -70,8 +82,10 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
+            // Conditionally show options if the user is logged in
             if (_isLoggedIn)
               ListTile(
+                // Tile for "Invite Friends" option
                 leading: const Icon(Icons.person_add, color: Color(0xFF546E7A)),
                 title: const Text('Invite Friends'),
                 onTap: () {
@@ -99,24 +113,27 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+// Function to show a sign-out confirmation dialog
   void _showSignOutDialog(BuildContext context) {
     showDialog(
-      context: context,
+      context: context, // The context in which to display the dialog
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Confirm Sign Out'),
           content: const Text('Are you sure you want to sign out?'),
           actions: <Widget>[
             TextButton(
+              // Cancel button
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(); // Close the dialog
               },
               child: const Text('Cancel'),
             ),
             TextButton(
+              // Sign Out button
               onPressed: () {
                 Navigator.of(context).pop();
-                _signOut();
+                _signOut(); // Call the sign out function to log the user out
               },
               child: const Text('Sign Out'),
             ),
@@ -126,29 +143,38 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+// Function to navigate to the HelpScreen
   void _navigateToHelpScreen(BuildContext context) {
     Navigator.of(context).push(
+      // Push the HelpScreen route onto the navigation stack
       MaterialPageRoute(
-        builder: (context) => const HelpScreen(),
+        builder: (context) =>
+            const HelpScreen(), // The HelpScreen widget to build
       ),
     );
   }
 
+// Function to navigate to the InviteScreen
   void _navigateToInviteScreen(BuildContext context) {
     Navigator.of(context).push(
+      // Push the InviteScreen route onto the navigation stack
       MaterialPageRoute(
-        builder: (context) => const InviteScreen(),
+        builder: (context) =>
+            const InviteScreen(), // The InviteScreen widget to build
       ),
     );
   }
 }
+// Help Screen Class
 
+// Class for the HelpScreen, a static page with information about the app
 class HelpScreen extends StatelessWidget {
   const HelpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Main structure of the screen
       appBar: AppBar(
         title: const Text('Help', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF37474F),
@@ -157,8 +183,10 @@ class HelpScreen extends StatelessWidget {
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: SingleChildScrollView(
+          // Allow scrolling if content overflows
           child: Card(
-            elevation: 4,
+            // Card to visually group the help information
+            elevation: 4, // Give the card a subtle shadow
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
@@ -288,7 +316,9 @@ class HelpScreen extends StatelessWidget {
     );
   }
 }
+// Invite Screen Class
 
+// Class for the InviteScreen, allowing users to invite friends via email
 class InviteScreen extends StatefulWidget {
   const InviteScreen({Key? key}) : super(key: key);
 

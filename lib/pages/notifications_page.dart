@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NotificationsPage extends StatefulWidget {
+  // Constructor
   const NotificationsPage({super.key});
 
   @override
@@ -27,6 +28,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   });
                 },
               ),
+              // Show a badge for unread notifications
               if (_unreadNotificationsCount > 0)
                 Positioned(
                   right: 8,
@@ -58,6 +60,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
           ),
         ],
       ),
+      // List to display notifications
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: <Widget>[
@@ -84,6 +87,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
+  // Function to build individual notification cards
   Widget _buildNotificationCard(String title, String message) {
     return Card(
       color: const Color(0xFF37474F),

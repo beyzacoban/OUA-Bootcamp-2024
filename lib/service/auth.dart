@@ -35,7 +35,7 @@ class Auth {
   Future<User?> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) {
-      return null; // Kullanıcı oturumu iptal etti
+      return null;
     }
 
     final GoogleSignInAuthentication googleAuth =

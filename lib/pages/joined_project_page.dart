@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class JoinedProjectsPage extends StatelessWidget {
+  // A list of project titles that the user has joined
   final List<String> joinedProjects;
-
+  // Constructor for the JoinedProjectsPage widget. Takes the list of joined projects as a required parameter.
   const JoinedProjectsPage({Key? key, required this.joinedProjects})
       : super(key: key);
 
@@ -13,6 +14,7 @@ class JoinedProjectsPage extends StatelessWidget {
         title: const Text('Joined Projects'),
         backgroundColor: const Color(0xFF37474F),
       ),
+      // Body conditionally displays content based on whether the user has joined any projects
       body: joinedProjects.isEmpty
           ? const Center(
               child: Text(

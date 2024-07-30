@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'chat_page.dart';
 
+// StatefulWidget for displaying a list of friends and allowing interactions
 class FriendsPage extends StatefulWidget {
   final List<String> friends;
 
@@ -16,9 +17,11 @@ class _FriendsPageState extends State<FriendsPage> {
   @override
   void initState() {
     super.initState();
-    friendsList = widget.friends;
+    friendsList =
+        widget.friends; // Initialize with friends passed from the parent widget
   }
 
+  // Function to show a dialog with options for a friend
   void _showOptionsDialog(BuildContext context, String friend) {
     showDialog(
       context: context,
@@ -64,6 +67,7 @@ class _FriendsPageState extends State<FriendsPage> {
     );
   }
 
+  // Function to show a confirmation dialog before removing a friend
   void _showConfirmationDialog(BuildContext context, String friend) {
     showDialog(
       context: context,
