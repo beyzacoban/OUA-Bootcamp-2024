@@ -1,6 +1,7 @@
 # **Flutter Grup-39**
+<details>
+<summary>Takım Üyeleri</summary>
 
-## Takım Üyeleri
 
 | İsim           | Görev                  |
 | -------------- | ---------------------- |
@@ -9,14 +10,20 @@
 | Rabia Günbaş   | Developer              |
 | Batuhan Turan  | Developer              |
 
+</details>
+
 ## Uygulama İsmi
 **TeamHub**
 
 ## Product Backlog URL
+<details>
+<summary> </summary>
+
 Proje yönetim ve görev takibi için Trello kullanıyoruz. Detaylara aşağıdaki linkten ulaşabilirsiniz:
 
 [Trello Board](https://trello.com/b/fHno3FqK/ouabootcamp2024fluttergroup39)
 
+</details>
 
 ## Uygulama Açıklaması
 TeamHub, proje fikri olan ve projesine uygun birlikte çalışabileceği takım arkadaşları arayan ürün sahipleri ile takım çalışmasında yer almak isteyen geliştiricileri bir araya getiren bir platformdur. 
