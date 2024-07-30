@@ -34,6 +34,7 @@ Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihti
 - **Geliştiriciler:** Takım çalışmasında yer almak isteyen, farklı projelerde yer alarak deneyim kazanmak isteyen yazılım geliştiricileri.
 
 ## Sprint 1
+
 <details>
 <summary>Sprint 1 Detayları</summary>
 
@@ -81,6 +82,7 @@ Sprint board
 </details>
 
 ## Sprint 2
+
 <details>
 <summary>Sprint 2 Detayları</summary>
 
@@ -138,7 +140,18 @@ Sprint board
   </tr>
 </table>
 
-**Sprint Review Katılımcıları:** Beyza Çoban, Rabia Günbaş, Ayşenur Eskin, Batuhan Turan
+## Sprint Review
+
+- Uygulamaya bir yapay zeka asistanı eklenmeye karar verilmiştir ve bir chatbot eklenmiştir.
+- Uygulamayı daha geniş bir kullanıcı yelpazesine ulaştırmak için, kullanıcıların arkadaşlarını uygulamaya davet edebileceği bir bölüm eklenmiştir.
+- Yapılabilecek yenilikler tartışılarak takım arkadaşlarıyla ve diğer kullanıcılarla iletişim kurabileceği bir mesajlaşma bölümü oluşturulmuştur.
+- Help ekranıyla kullanıcıya uygulama kullanımı hakkında bilgilendirme mesajları eklenmiştir.
+
+**Sprint review katılımcıları:** Beyza Çoban, Rabia Günbaş, Ayşenur Eskin, Batuhan Turan
+
+## Sprint Retrospective
+
+- Developer grubu, projenin daha gelişmiş, tema değiştirilmiş ve yenilikler eklenmiş ikinci görünümünü ortaya çıkarmıştır.
 
 </details>
 
