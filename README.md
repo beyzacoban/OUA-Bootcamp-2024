@@ -34,14 +34,17 @@ Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihti
 - **Geliştiriciler:** Takım çalışmasında yer almak isteyen, farklı projelerde yer alarak deneyim kazanmak isteyen yazılım geliştiricileri.
 
 ## Sprint 1
+<details>
+<summary>Sprint 1 Detayları</summary>
+
 - **Tamamlanması Tahmin Edilen Puan:** 10 Puan
 - **Daily Scrum:** Daily Scrum toplantıları Slack kanalı üzerinden yapılmıştır.
 
-## Sprint Notları
+### Sprint Notları
 - Proje yönetimi için Trello kullanılmasına karar verildi.
 - Kullanıcı kimlik doğrulaması için Firebase kullanılmasına karar verildi.
 
-Puan tamamlama mantığı: Proje boyunca tamamlanması gereken backlog puanı 40'dır. Proje boyunca tamamlanması gereken backlog puanına bakıldığında ilk bitirilmesi istenilen puan sayısı 10 olarak belirlenmiştir ve puana ulaşılmıştır.
+Puan tamamlama mantığı: Proje boyunca tamamlanması gereken backlog puanı 40'dır. Proje boyunca tamamlanması gereken backlog puanına bakıldığında ilk bitirilmesi istenilen puan sayısı 10 olarak belirlenmiştir ve puana ulaşılmıştır.
 
 Sprint board 
 
@@ -67,7 +70,6 @@ Sprint board
   </tr>
 </table>
 
-
 ## Sprint Review
 - Görev dağılımları yapılmış, product owner, scrum master ve developerlar belirlenmiştir.
 - Proje konu fikirleri öne sunulmuş ve ortak projeye karar verilmiştir.
@@ -76,7 +78,11 @@ Sprint board
 ## Sprint Retrospective
 - Developer grubu projenin ilk görünümünü ortaya çıkarmıştır
 
+</details>
+
 ## Sprint 2
+<details>
+<summary>Sprint 2 Detayları</summary>
 
 **Sprint içinde tamamlanması tahmin edilen puan:** 10 Puan
 
@@ -89,7 +95,6 @@ Sprint board
 - **Arkadaş Davet Bölümü:** Kullanıcılar arkadaşlarını davet edebilir.
 - **Mesajlaşma Özelliği:** Proje arkadaşlarıyla iletişim kurma imkanı sunuldu.
 - **Yardım Ekranı:** Kullanıcılar için bilgi sağlayan yardım ekranı eklendi.
-
 
 ## Sprint Board Update
 <img src="https://github.com/user-attachments/assets/8e2fbaf8-c362-4646-bb98-78dcaddee3d0" width="800" height="533" />
@@ -133,19 +138,14 @@ Sprint board
   </tr>
 </table>
 
+**Sprint Review Katılımcıları:** Beyza Çoban, Rabia Günbaş, Ayşenur Eskin, Batuhan Turan
+
+</details>
+
+## Sprint 3
+<details>
+<summary>Sprint 3 Detayları</summary>
 
 
-
-## Sprint Review
-
-- Uygulamaya bir yapay zeka asistanı eklenmeye karar verilmiştir ve bir chatbot eklenmiştir.
-- Uygulamayı daha geniş bir kullanıcı yelpazesine ulaştırmak için, kullanıcıların arkadaşlarını uygulamaya davet edebileceği bir bölüm eklenmiştir.
-- Yapılabilecek yenilikler tartışılarak takım arkadaşlarıyla ve diğer kullanıcılarla iletişim kurabileceği bir mesajlaşma bölümü oluşturulmuştur.
-- Help ekranıyla kullanıcıya uygulama kullanımı hakkında bilgilendirme mesajları eklenmiştir.
-
-**Sprint review katılımcıları:** Beyza Çoban, Rabia Günbaş, Ayşenur Eskin, Batuhan Turan
-
-## Sprint Retrospective
-
-- Developer grubu, projenin daha gelişmiş, tema değiştirilmiş ve yenilikler eklenmiş ikinci görünümünü ortaya çıkarmıştır.
+</details>
 
