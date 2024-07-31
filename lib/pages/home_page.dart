@@ -139,7 +139,14 @@ class _HomePageState extends State<HomePage>
     // This widget builds the main scaffold structure of the Projects screen.
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Projects"),
+        title: const Text(
+          "Projects",
+          style: TextStyle(
+            fontSize: 22.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
         actions: [
           // Notification Icon Button
           IconButton(
