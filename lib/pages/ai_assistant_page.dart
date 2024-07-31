@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_generative_ai/google_generative_ai.dart';
-
-const apiKey = '';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class AiAssistantPage extends StatefulWidget {
   const AiAssistantPage({Key? key}) : super(key: key);
@@ -15,10 +14,12 @@ class AiAssistantPage extends StatefulWidget {
 class _AiAssistantPageState extends State<AiAssistantPage> {
   final TextEditingController _questionController = TextEditingController();
   final List<Map<String, String>> _conversation = [];
-  final GenerativeModel _model = GenerativeModel(
-    model: 'gemini-1.5-flash-latest',
-    apiKey: apiKey,
-  );
+  late final GenerativeModel _model;
+  ChatSession? _chat;
+  final ScrollController _scrollController = ScrollController();
+  final FocusNode _textFieldFocus = FocusNode();
+  bool _loading = false;
+  static const apiKey = 'AIzaSyDbY7efQQEyPCwdLQCe6cixmoPsN1SellA';
 
   Map<String, String> _teamHubInfo = {};
 
@@ -26,6 +27,20 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   void initState() {
     super.initState();
     _loadTeamHubInfo();
+    _model = GenerativeModel(
+      model: 'gemini-pro',
+      apiKey: apiKey,
+    );
+    _initializeChatSession();
+  }
+
+  Future<void> _initializeChatSession() async {
+    try {
+      _chat = _model.startChat();
+      setState(() {}); // Update UI after initializing _chat
+    } catch (e) {
+      _showError('Chat session initialization failed: $e');
+    }
   }
 
   Future<void> _loadTeamHubInfo() async {
@@ -43,12 +58,48 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
       });
       print('TeamHub info loaded successfully.');
     } catch (e) {
-      print('Error loading teamHubInfo: $e'); // Debug
+      print('Error loading teamHubInfo: $e');
     }
+  }
+
+  void _scrollDown() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(milliseconds: 100), () {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(
+            milliseconds: 750,
+          ),
+          curve: Curves.easeOutCirc,
+        );
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    var textFieldDecoration = InputDecoration(
+      contentPadding: const EdgeInsets.all(15),
+      hintText: 'Ask me anything...',
+      hintStyle: TextStyle(
+        color: Theme.of(context).colorScheme.secondary,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(14),
+        ),
+        borderSide: BorderSide(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(14)),
+        borderSide: BorderSide(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -62,37 +113,29 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8.0),
-              itemCount: _conversation.length,
-              itemBuilder: (context, index) {
-                final isUser =
-                    index % 2 == 0; // Alternation between user and AI messages
-                return Align(
-                  alignment:
-                      isUser ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 4.0),
-                    padding: const EdgeInsets.all(12.0),
-                    constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.75),
-                    decoration: BoxDecoration(
-                      color: isUser
-                          ? Color.fromARGB(255, 139, 165, 178)
-                          : Colors.grey[200],
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Text(
-                      isUser
-                          ? _conversation[index]['user']!
-                          : _conversation[index]['ai']!,
-                      style:
-                          const TextStyle(color: Colors.black, fontSize: 16.0),
-                    ),
+            child: apiKey.isNotEmpty
+                ? _chat != null
+                    ? ListView.builder(
+                        controller: _scrollController,
+                        itemBuilder: (context, idx) {
+                          var content = _chat!.history.toList()[idx];
+                          var text = content.parts
+                              .whereType<TextPart>()
+                              .map<String>((e) => e.text)
+                              .join('');
+                          return MessageWidget(
+                            text: text,
+                            isFromUser: content.role == 'user',
+                          );
+                        },
+                        itemCount: _chat!.history.length,
+                      )
+                    : const Center(child: CircularProgressIndicator())
+                : ListView(
+                    children: const [
+                      Text('Api key bulunamadi'),
+                    ],
                   ),
-                );
-              },
-            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -101,35 +144,33 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
                 Expanded(
                   child: TextField(
                     controller: _questionController,
-                    decoration: InputDecoration(
-                      hintText: 'Ask me anything...',
-                      hintStyle: const TextStyle(color: Colors.black),
-                      fillColor: Colors.grey[200],
-                      filled: true,
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                        borderSide: BorderSide.none,
-                      ),
+                    focusNode: _textFieldFocus,
+                    decoration: textFieldDecoration,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
-                    style: const TextStyle(color: Colors.black, fontSize: 16.0),
+                    onSubmitted: (String value) {
+                      _sendChatMessage(value);
+                      _textFieldFocus.unfocus();
+                    },
                   ),
                 ),
-                IconButton(
-                  onPressed: () async {
-                    final userQuestion = _questionController.text.trim();
-                    if (userQuestion.isNotEmpty) {
-                      final aiResponse = await _getAIResponse(userQuestion);
-                      setState(() {
-                        _conversation
-                            .add({'user': userQuestion, 'ai': aiResponse});
-                        _questionController.clear();
-                      });
-                    } else {
-                      print('User question is empty.');
-                    }
-                  },
-                  icon: const Icon(Icons.send, color: Colors.black),
-                ),
+                if (!_loading)
+                  IconButton(
+                    onPressed: () async {
+                      _sendChatMessage(_questionController.text);
+                      _textFieldFocus.unfocus();
+                    },
+                    icon: Icon(
+                      Icons.send,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  )
+                else
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: CircularProgressIndicator(),
+                  ),
               ],
             ),
           ),
@@ -138,23 +179,118 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
     );
   }
 
-  Future<String> _getAIResponse(String question) async {
-    final lowerQuestion = question.toLowerCase();
-    print('User question: $question'); // Debug
-
-    if (_teamHubInfo.containsKey(lowerQuestion)) {
-      final response = _teamHubInfo[lowerQuestion]!;
-      print('Response from local info: $response'); // Debug
-      return response;
-    } else {
-      try {
-        final response = await _model.generateContent([Content.text(question)]);
-        print('AI response: ${response.text}'); // Debug
-        return response.text ?? 'Yanıt alınamadı.';
-      } catch (e) {
-        print('AI response error: ${e.toString()}'); // Debug
-        return 'Hata: ${e.toString()}';
-      }
+  Future<void> _sendChatMessage(String message) async {
+    if (_chat == null) {
+      _showError('Chat session is not initialized.');
+      return;
     }
+
+    setState(() {
+      _loading = true;
+    });
+
+    try {
+      final lowerQuestion = message.toLowerCase();
+      print('User question: $message');
+
+      if (_teamHubInfo.containsKey(lowerQuestion)) {
+        final response = _teamHubInfo[lowerQuestion]!;
+        print('Response from local info: $response');
+        setState(() {
+          _conversation.add({'user': message, 'ai': response});
+          _loading = false;
+        });
+      } else {
+        var response = await _chat!.sendMessage(
+          Content.text(message),
+        );
+        var text = response.text ?? 'Yanıt alınamadı.';
+
+        setState(() {
+          _conversation.add({'user': message, 'ai': text});
+          _loading = false;
+          _scrollDown();
+        });
+      }
+    } catch (e) {
+      _showError(e.toString());
+      setState(() {
+        _loading = false;
+      });
+    } finally {
+      _questionController.clear();
+      _textFieldFocus.requestFocus();
+    }
+  }
+
+  void _showError(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Bir şeyler ters gitti'),
+          content: SingleChildScrollView(
+            child: SelectableText(message),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            )
+          ],
+        );
+      },
+    );
+  }
+}
+
+class MessageWidget extends StatelessWidget {
+  final String text;
+  final bool isFromUser;
+
+  const MessageWidget({
+    super.key,
+    required this.text,
+    required this.isFromUser,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment:
+          isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+      children: [
+        Flexible(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 600),
+            decoration: BoxDecoration(
+              color: isFromUser
+                  ? Colors.green[200] // User message color
+                  : Colors.grey.withOpacity(0.2), // AI message color
+              borderRadius: BorderRadius.circular(18),
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: 15,
+              horizontal: 20,
+            ),
+            margin: const EdgeInsets.only(top: 10, bottom: 10),
+            child: MarkdownBody(
+              selectable: true,
+              data: text,
+              styleSheet: MarkdownStyleSheet(
+                p: TextStyle(
+                  fontSize: 16.0, // Increase the text size
+                  color: isFromUser
+                      ? Colors.black // User message text color
+                      : Colors.black87, // AI message text color
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
