@@ -41,6 +41,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
       setState(() {
         _teamHubInfo = loadedInfo;
       });
+      print('TeamHub info loaded successfully.');
     } catch (e) {
       print('Error loading teamHubInfo: $e'); // Debug
     }
@@ -50,17 +51,45 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AI Assistant'),
+        title: const Text(
+          'AI Assistant',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color(0xFF37474F),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.all(8.0),
               itemCount: _conversation.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_conversation[index]['user']!),
-                  subtitle: Text(_conversation[index]['ai']!),
+                final isUser =
+                    index % 2 == 0; // Alternation between user and AI messages
+                return Align(
+                  alignment:
+                      isUser ? Alignment.centerRight : Alignment.centerLeft,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 4.0),
+                    padding: const EdgeInsets.all(12.0),
+                    constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.75),
+                    decoration: BoxDecoration(
+                      color: isUser
+                          ? Color.fromARGB(255, 139, 165, 178)
+                          : Colors.grey[200],
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Text(
+                      isUser
+                          ? _conversation[index]['user']!
+                          : _conversation[index]['ai']!,
+                      style:
+                          const TextStyle(color: Colors.black, fontSize: 16.0),
+                    ),
+                  ),
                 );
               },
             ),
@@ -72,22 +101,34 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
                 Expanded(
                   child: TextField(
                     controller: _questionController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'Ask me anything...',
+                      hintStyle: const TextStyle(color: Colors.black),
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
+                    style: const TextStyle(color: Colors.black, fontSize: 16.0),
                   ),
                 ),
                 IconButton(
                   onPressed: () async {
-                    final userQuestion = _questionController.text;
-                    final aiResponse = await _getAIResponse(userQuestion);
-                    setState(() {
-                      _conversation
-                          .add({'user': userQuestion, 'ai': aiResponse});
-                      _questionController.clear();
-                    });
+                    final userQuestion = _questionController.text.trim();
+                    if (userQuestion.isNotEmpty) {
+                      final aiResponse = await _getAIResponse(userQuestion);
+                      setState(() {
+                        _conversation
+                            .add({'user': userQuestion, 'ai': aiResponse});
+                        _questionController.clear();
+                      });
+                    } else {
+                      print('User question is empty.');
+                    }
                   },
-                  icon: const Icon(Icons.send),
+                  icon: const Icon(Icons.send, color: Colors.black),
                 ),
               ],
             ),
@@ -99,14 +140,19 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
 
   Future<String> _getAIResponse(String question) async {
     final lowerQuestion = question.toLowerCase();
+    print('User question: $question'); // Debug
 
     if (_teamHubInfo.containsKey(lowerQuestion)) {
-      return _teamHubInfo[lowerQuestion]!;
+      final response = _teamHubInfo[lowerQuestion]!;
+      print('Response from local info: $response'); // Debug
+      return response;
     } else {
       try {
         final response = await _model.generateContent([Content.text(question)]);
+        print('AI response: ${response.text}'); // Debug
         return response.text ?? 'Yanıt alınamadı.';
       } catch (e) {
+        print('AI response error: ${e.toString()}'); // Debug
         return 'Hata: ${e.toString()}';
       }
     }

@@ -6,6 +6,7 @@ import 'messages_page.dart';
 import 'friends_page.dart';
 import 'project_addition_page.dart';
 import 'settings_page.dart';
+import 'calendar_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -228,6 +229,7 @@ class _HomePageState extends State<HomePage>
                         MaterialPageRoute(
                             builder: (context) => const MessagesPage()),
                       )),
+
               _buildDrawerItem(
                   icon: Icons.folder,
                   text: 'Joined Projects',
@@ -237,6 +239,16 @@ class _HomePageState extends State<HomePage>
                             builder: (context) => JoinedProjectsPage(
                                 joinedProjects: _joinedProjects)),
                       )),
+              _buildDrawerItem(
+                icon: Icons.calendar_today,
+                text: 'Calendar',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CalendarPage(),
+                  ),
+                ),
+              ),
               _buildDrawerItem(
                   icon: Icons.settings,
                   text: 'Settings',
