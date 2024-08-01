@@ -289,7 +289,7 @@ class MessageWidget extends StatelessWidget {
                 p: TextStyle(
                   fontSize: 16.0, // Increase the text size
                   color: isFromUser
-                      ? Colors.black // User message text color
+                      ? Colors.black  // User message text color
                       : Colors.black87, // AI message text color
                 ),
               ),
