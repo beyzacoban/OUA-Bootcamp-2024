@@ -4,6 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
+// This StatefulWidget creates the stateful widget for the AI Assistant page
 class AiAssistantPage extends StatefulWidget {
   const AiAssistantPage({Key? key}) : super(key: key);
 
@@ -19,12 +20,13 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   final ScrollController _scrollController = ScrollController();
   final FocusNode _textFieldFocus = FocusNode();
   bool _loading = false;
-  static const apiKey = 'AIzaSyDbY7efQQEyPCwdLQCe6cixmoPsN1SellA';
+  static const apiKey = 'AIzaSyCW-9xVr54X-nNlKerO17ug_INaKnJmaGY';
 
   Map<String, String> _teamHubInfo = {};
 
   @override
   void initState() {
+    // This method is called when the widget is first created
     super.initState();
     _loadTeamHubInfo();
     _model = GenerativeModel(
@@ -35,6 +37,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   }
 
   Future<void> _initializeChatSession() async {
+    // Initialize the chat session with error handling
     try {
       _chat = _model.startChat();
       setState(() {}); // Update UI after initializing _chat
@@ -44,6 +47,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   }
 
   Future<void> _loadTeamHubInfo() async {
+    // Load pre-defined questions and answers from a local JSON file
     try {
       final String response = await rootBundle
           .loadString('lib/assets/images/data/teamhub_info.json');
@@ -64,7 +68,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
 
   void _scrollDown() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 100), () {
+      Future.delayed(const Duration(milliseconds: 50), () {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
           duration: const Duration(
@@ -78,6 +82,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Build the UI of the chat screen
     var textFieldDecoration = InputDecoration(
       contentPadding: const EdgeInsets.all(15),
       hintText: 'Ask me anything...',
@@ -246,6 +251,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   }
 }
 
+// Widget to display a single message in the chat
 class MessageWidget extends StatelessWidget {
   final String text;
   final bool isFromUser;

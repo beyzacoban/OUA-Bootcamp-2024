@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart'; // For date formatting
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
@@ -13,7 +13,7 @@ class _CalendarPageState extends State<CalendarPage> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
-  // Map to hold reminders, using a list to store multiple reminders per date
+  // Store reminders for each date, using a list to handle multiple reminders per day
   final Map<DateTime, List<String>> _reminders = {};
 
   @override
@@ -43,12 +43,14 @@ class _CalendarPageState extends State<CalendarPage> {
                   _selectedDay = selectedDay;
                   _focusedDay = focusedDay;
                 });
+                // Navigate to the reminder page for the selected day
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ReminderPage(
                       selectedDay: selectedDay,
                       onReminderSaved: (DateTime date, String reminder) {
+                        // Callback for when a reminder is saved
                         setState(() {
                           final normalizedDate =
                               DateTime(date.year, date.month, date.day);
@@ -142,6 +144,7 @@ class _CalendarPageState extends State<CalendarPage> {
               daysOfWeekVisible: true,
             ),
           ),
+          // Display reminders for the currently focused month
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -165,6 +168,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                   const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(reminder),
+                            // When a reminder is tapped, navigate back to ReminderPage for editing
                             onTap: () {
                               Navigator.push(
                                 context,

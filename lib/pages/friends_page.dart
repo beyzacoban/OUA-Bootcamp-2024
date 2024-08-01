@@ -30,25 +30,10 @@ class _FriendsPageState extends State<FriendsPage> {
           title: const Text('Options',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-          backgroundColor: Color(0xFF546E7A), //
+          backgroundColor: Color(0xFF546E7A), // Dark gray background
           content: const Text('Select an action',
               style: TextStyle(color: Colors.white)),
           actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _showConfirmationDialog(context, friend);
-              },
-              child: const Text('Send Message',
-                  style: TextStyle(color: Colors.white)),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Remove Friend',
-                  style: TextStyle(color: Colors.red)),
-            ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -60,6 +45,21 @@ class _FriendsPageState extends State<FriendsPage> {
                     ),
                   ),
                 );
+              },
+              child: const Text('Send Message',
+                  style: TextStyle(color: Colors.white)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _showConfirmationDialog(context, friend);
+              },
+              child: const Text('Remove Friend',
+                  style: TextStyle(color: Colors.red)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
               },
               child:
                   const Text('Cancel', style: TextStyle(color: Colors.white)),

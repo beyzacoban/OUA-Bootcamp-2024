@@ -47,6 +47,7 @@ class _ChatPageState extends State<ChatPage> {
             child: Row(
               children: [
                 Expanded(
+                  // Make the text field take up remaining space
                   child: TextField(
                     controller: _messageController,
                     decoration: const InputDecoration(
@@ -70,6 +71,7 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
+  // Method to build an individual message bubble
   Widget _buildMessageBubble(Map<String, dynamic> message) {
     final isMe = message['sender'] == 'Me';
     return Container(
