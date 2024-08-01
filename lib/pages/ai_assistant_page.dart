@@ -20,7 +20,7 @@ class _AiAssistantPageState extends State<AiAssistantPage> {
   final ScrollController _scrollController = ScrollController();
   final FocusNode _textFieldFocus = FocusNode();
   bool _loading = false;
-  static const apiKey = 'AIzaSyCW-9xVr54X-nNlKerO17ug_INaKnJmaGY';
+  static const apiKey = '';
 
   Map<String, String> _teamHubInfo = {};
 
