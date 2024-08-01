@@ -52,7 +52,7 @@ Proje fikri olan ürün sahipleri, TeamHub üzerinde projelerini tanıtarak ihti
 - Proje yönetimi için Trello kullanılmasına karar verildi.
 - Kullanıcı kimlik doğrulaması için Firebase kullanılmasına karar verildi.
 
-Puan tamamlama mantığı: Proje boyunca tamamlanması gereken backlog puanı 40'dır. Proje boyunca tamamlanması gereken backlog puanına bakıldığında ilk bitirilmesi istenilen puan sayısı 10 olarak belirlenmiştir ve puana ulaşılmıştır.
+Puan tamamlama mantığı: Proje boyunca tamamlanması gereken backlog puanı 30'dır. Proje boyunca tamamlanması gereken backlog puanına bakıldığında ilk bitirilmesi istenilen puan sayısı 10 olarak belirlenmiştir ve puana ulaşılmıştır.
 
 Sprint board 
 
@@ -95,7 +95,7 @@ Sprint board
 
 **Sprint içinde tamamlanması tahmin edilen puan:** 10 Puan
 
-**Puan tamamlama mantığı:** Toplamda proje boyunca tamamlanması gereken 40 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde, ikinci sprint'in en azından 10 puan ile devam etmesi gerektiğine karar verilmiştir.
+**Puan tamamlama mantığı:** Toplamda proje boyunca tamamlanması gereken 30 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde, ikinci sprint'in en azından 10 puan ile devam etmesi gerektiğine karar verilmiştir.
 
 **Daily Scrum:** Slack kanalı üzerinden iletişim kopukluğu yaşanıldığı fark edildiği için projenin devamı WhatsApp grubu üzerinden sağlanması karar verilmiştir.
 
@@ -166,6 +166,58 @@ Sprint board
 <details>
 <summary>Sprint 3 Detayları</summary>
 
+**Sprint içinde tamamlanması tahmin edilen puan:** 10 Puan
+
+**Puan tamamlama mantığı:** Toplamda proje boyunca tamamlanması gereken 30 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde sonuncu sprinte 10 puan kalmıştır ve bu puana ulaşılmıştır.
+
+**Daily Scrum:** WhatsApp grubu üzerinden iletişim kurularak proje son halini aldı.
+
+**Sprint Notları:**
+
+- **Sprint Hedefleri ve Kapsamı:** Bu sprintte, Gemini AI entegrasyonu, takvim ekleme ve bildirim paneli özellikleri gibi önemli hedefler belirlendi. Tüm hedefler başarıyla gerçekleştirildi.
+  
+- **Karşılaşılan Zorluklar ve Çözümler:** Gemini AI entegrasyonunda bazı teknik zorluklar yaşandı, ancak ekibin çabalarıyla bu sorunlar çözüldü ve başarılı bir entegrasyon sağlandı.
+  
+- **Yapılan Değişiklikler ve İyileştirmeler:** Yapay zeka asistanı kullanıcı dostu bir arayüzle yeniden tasarlandı ve performans iyileştirmeleri yapıldı.
+
+## Sprint Board Update: Sprint board screenshotları:
+<img src="https://github.com/user-attachments/assets/149f2812-848d-4f39-bc61-737eaf1fb0f8" width="800" height="533" />
+
+Toplantı ve WhatsApp Grubu Ekran Görüntüleri
+[WhatsApp Grubu Ekran Görüntüleri](https://drive.google.com/drive/folders/1VXN_3WcSi2GNQZX1F1Aakhg7TGE5K786?usp=sharing)
+
+## Ürün Durumu: Ekran Görüntüleri ve Kısa Açıklamalar
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/965ac399-8fb8-458c-b7f1-0d322312c8e1" width="600" height="400"></td>
+    <td><img src="https://github.com/user-attachments/assets/9069bacc-83c8-4db0-b8b4-70c09bd05a67" width="600" height="400"></td>
+    <td><img src="https://github.com/user-attachments/assets/fc7a4930-503a-454e-8a97-d687cdec0232" width="600" height="400"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/b9c92a17-7729-41dc-bec0-b01cebc04132" width="600" height="400"></td>
+    <td><img src="https://github.com/user-attachments/assets/fb4c42e1-5c3b-45bc-b42e-845ae82a092b" width="600" height="400"></td>
+    <td><img src="https://github.com/user-attachments/assets/d8519884-cfda-4734-b9a1-ac80259c9eee" width="600" height="400"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/cd874651-035f-4b6d-963e-4a56209e08a9" width="600" height="400"></td>
+    <td><img src="https://github.com/user-attachments/assets/6fc4b34a-5ca5-41dc-bbce-558185847c16" width="600" height="400"></td>
+    <td><img src="https://github.com/user-attachments/assets/5714f4fd-dc96-437f-ac27-b501a028a801" width="600" height="400"></td>
+  </tr>
+</table>
+
+## Sprint Review
+
+- İkinci Sprint'de uygulamaya eklenen yapay zeka asistanının tasarımında değişiklik yapıldı.
+- Gemini AI eklenmiştir.
+- Kullanıcıların çalışmalarını takip edebilmesi için takvim eklenmiştir.
+- Bildirim paneli eklenmiştir.
+
+**Sprint Review Katılımcıları:** Beyza Çoban, Rabia Günbaş, Ayşenur Eskin, Batuhan Turan
+
+## Sprint Retrospective
+
+- Developer grubu yoğun çalışmalarıyla projenin son görünümünü ortaya çıkarmıştır.
 
 </details>
+
 
