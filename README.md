@@ -15,6 +15,11 @@
 ## Uygulama İsmi
 **TeamHub**
 
+## Uygulama Demosu
+
+Uygulamanın demosunu izlemek için [buraya tıklayın](https://www.youtube.com/shorts/jr3cn8vpzk0).
+
+
 ## Product Backlog URL
 <details>
 <summary> </summary>
